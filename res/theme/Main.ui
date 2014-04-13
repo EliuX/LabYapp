@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Main" cloudDestinationProperty="ViewExams" scrollableX="false" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Listado de Examenes" cyclicFocus="true" >
+  <component type="MultiList" name="MultiList" cloudDestinationProperty="MultiList" >
+    <layoutConstraint value="Center" />
+    <mapItems>
+      <stringItem key="price" value="200 cuc" />
+      <stringItem key="fullname" value="Entrada 1" />
+    </mapItems>
+    <custom name="name1" type="java.lang.String" value="fullname" />
+    <custom name="name2" type="java.lang.String" value="price" />
+    <custom name="checkBox" type="java.lang.Boolean" value="true" />
+  </component>
+</component>
