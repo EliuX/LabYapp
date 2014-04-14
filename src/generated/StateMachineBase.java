@@ -33,8 +33,9 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container startApp(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
+        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         if(loadTheme) {
             if(res == null) {
                 try {
@@ -69,8 +70,9 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container createWidget(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
+        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         if(loadTheme) {
             if(res == null) {
                 try {
@@ -106,6 +108,18 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public StateMachineBase(Resources res, boolean loadTheme) {
         this(res, null, loadTheme);
+    }
+
+    public com.codename1.ui.TextField findTxtSearch(Component root) {
+        return (com.codename1.ui.TextField)findByName("txtSearch", root);
+    }
+
+    public com.codename1.ui.TextField findTxtSearch() {
+        com.codename1.ui.TextField cmp = (com.codename1.ui.TextField)findByName("txtSearch", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.TextField)findByName("txtSearch", aboutToShowThisContainer);
+        }
+        return cmp;
     }
 
     public com.codename1.ui.list.MultiList findMultiList(Component root) {
@@ -262,10 +276,17 @@ public abstract class StateMachineBase extends UIBuilder {
                 onMain_MultiListAction(c, event);
                 return;
             }
+            if("txtSearch".equals(c.getName())) {
+                onMain_TxtSearchAction(c, event);
+                return;
+            }
         }
     }
 
       protected void onMain_MultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onMain_TxtSearchAction(Component c, ActionEvent event) {
       }
 
 }

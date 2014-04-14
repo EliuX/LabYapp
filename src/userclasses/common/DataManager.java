@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.consusalud.labyapp;
+package userclasses.common;
 
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
