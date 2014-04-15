@@ -21,6 +21,7 @@ import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector;
+import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
 import userclasses.common.FilterProxyListModel;
 
@@ -105,8 +106,9 @@ public class StateMachine extends StateMachineBase {
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
         if (event.getSource() != null) {
-            Hashtable<String, String> field = proxyModel.getItemSelected();  
-            String txt = field.get(ExamsModel.FIELD_FULLNAME) + "\n" + "Precio:\t" + field.get(ExamsModel.FIELD_PRICE);
+            Hashtable<String, String> field = proxyModel.getItemSelected();
+            String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
+                    + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
             Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
         }
     }
@@ -115,8 +117,10 @@ public class StateMachine extends StateMachineBase {
      * Model for the exams list!
      */
     private static class ExamsModel extends FilterProxyListModel {
+        //Fields´ constants
         static public String FIELD_PRICE = "price";
         static public String FIELD_FULLNAME = "fullname";
+        static public String FIELD_FREQUENCY = "freq";
 
         public ExamsModel(ListModel model) {
             super(model);
