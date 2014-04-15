@@ -2,18 +2,23 @@
  * Your application code goes here
  */
 package userclasses;
-  
+
+import com.codename1.io.Log;
+import com.codename1.ui.Command;
 import com.codename1.ui.Component;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
-import com.codename1.ui.list.DefaultListModel; 
+import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.ListModel;
 import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector;
 import userclasses.common.DataManager;
@@ -29,10 +34,11 @@ public class StateMachine extends StateMachineBase {
     ExamsModel proxyModel;
     TextField btnSearch = null;
     MultiList listMain = null;
+    Command aceptExam;
+    Image iconExam;
+
     public StateMachine(String resFile) {
         super(resFile);
-        // do not modify, write code in initVars and initialize class members there,
-        // the constructor might be invoked too late due to race conditions that might occur
     }
 
     /**
@@ -45,61 +51,84 @@ public class StateMachine extends StateMachineBase {
         Vector vData = data.get("root");
         examsModel = new DefaultListModel(vData);
         proxyModel = new ExamsModel(examsModel);
-    } 
+        try {
+            iconExam = Image.createImage("/exam.png");
+        } catch (IOException ex) {
+            Log.e(ex);
+        }
+    }
 
     @Override
     protected boolean initListModelMultiList(List cmp) {
         cmp.setModel(examsModel);
         return true;
-    }  
-    
+    }
+
     @Override
     protected void postMain(Form f) {
-        MultiList m = findMultiList(); 
+        MultiList m = findMultiList();
         findTxtSearch().addDataChangeListener(new DataChangedListener() {
-           public void dataChanged(int type, int index) {
-               proxyModel.filter(findTxtSearch().getText()); 
-           }
+            public void dataChanged(int type, int index) {
+                proxyModel.filter(findTxtSearch().getText());
+            }
         });
     }
 
     @Override
     public TextField findTxtSearch() {
-        if(btnSearch==null){
+        if (btnSearch == null) {
             btnSearch = super.findTxtSearch(); //To change body of generated methods, choose Tools | Templates.  
         }
-         return btnSearch;
+        return btnSearch;
     }
 
     @Override
-    public MultiList findMultiList() { 
-         if(listMain==null){
+    public MultiList findMultiList() {
+        if (listMain == null) {
             listMain = super.findMultiList(); //To change body of generated methods, choose Tools | Templates.  
         }
-         return listMain;        
+        return listMain;
     }
-    
-    
+
+    Command getAceptExamCmd() {
+        if (aceptExam == null) {
+            aceptExam = new Command("Incluir") {
+                @Override
+                public void actionPerformed(ActionEvent ev) {
+
+                }
+            };
+        }
+        return aceptExam;
+    }
+
+    @Override
+    protected void onMain_MultiListAction(Component c, ActionEvent event) {
+        if (event.getSource() != null) {
+            Hashtable<String, String> field = proxyModel.getItemSelected();  
+            String txt = field.get(ExamsModel.FIELD_FULLNAME) + "\n" + "Precio:\t" + field.get(ExamsModel.FIELD_PRICE);
+            Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
+        }
+    }
 
     /**
      * Model for the exams list!
      */
-    private static class ExamsModel extends FilterProxyListModel{
+    private static class ExamsModel extends FilterProxyListModel {
+        static public String FIELD_PRICE = "price";
+        static public String FIELD_FULLNAME = "fullname";
+
         public ExamsModel(ListModel model) {
             super(model);
         }
 
         @Override
         public String ItemtoString(Object item) {
-            return ((Hashtable<String,String>) item).get("fullname"); 
+            return ((Hashtable<String, String>) item).get("fullname");
+        }
+
+        Hashtable<String, String> getItemSelected() {
+            return (Hashtable<String, String>) getItemAt(getSelectedIndex());
         }
     }
-
-    @Override
-    protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if(event.getSource()!=null){
-            
-        }
-    } 
-   
 }

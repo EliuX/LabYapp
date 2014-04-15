@@ -22,7 +22,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
 
     public FilterProxyListModel(ListModel underlying) {
         this.underlying = underlying;
-        underlying.addDataChangedListener(this);
+        underlying.addDataChangedListener(this); 
     }
 
     private int getFilterOffset(int index) {
@@ -48,7 +48,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
         for (int iter = 0; iter < underlying.getSize(); iter++) {
             String element = ItemtoString(underlying.getItemAt(iter));
             if (element.toUpperCase().indexOf(str) > -1) {
-                filter.addElement(new Integer(iter)); 
+                filter.addElement(new Integer(iter));
             }
         }
         dataChanged(DataChangedListener.CHANGED, -1);
@@ -72,6 +72,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
     public void setSelectedIndex(int index) {
         underlying.setSelectedIndex(getFilterOffset(index));
     }
+    
 
     public void addDataChangedListener(DataChangedListener l) {
         listeners.addElement(l);
@@ -104,8 +105,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
                 return;
             }
         }
-        for (int iter = 0; iter < listeners.size(); iter++) {
-
+        for (int iter = 0; iter < listeners.size(); iter++) { 
             ((DataChangedListener) listeners.elementAt(iter)).dataChanged(type, index);
         }
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Container" name="ViewExam" cloudDestinationProperty="ViewExamContainer" layout="BoxLayout" boxLayoutAxis="X" >
+  <component type="Label" name="lblIcon" cloudDestinationProperty="lblIcon" text="" icon="exam.png" gap="1" verticalAlignment="4" >
+  </component>
+  <component type="Container" name="MainDlgContainer" cloudDestinationProperty="MainDlgContainer" labelFor="lblIcon" enabled="true" scrollVisible="false" snapToGrid="false" scrollableX="false" scrollableY="false" layout="BoxLayout" boxLayoutAxis="Y" >
+    <component type="SpanLabel" name="lblfullname" cloudDestinationProperty="lblfullname" >
+      <custom name="text" type="java.lang.String" value="Examen" />
+    </component>
+    <component type="Label" name="lblprice" cloudDestinationProperty="lblprice" text="Sin costo" >
+    </component>
+  </component>
+</component>
