@@ -7,12 +7,14 @@ import com.codename1.io.Log;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
+import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.ListModel;
 import com.codename1.ui.list.MultiList;
@@ -67,12 +69,22 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void postMain(Form f) {
-        MultiList m = findMultiList();
-        findTxtSearch().addDataChangeListener(new DataChangedListener() {
+        final MultiList m = findMultiList();
+        findTxtSearch(f).addDataChangeListener(new DataChangedListener() {
             public void dataChanged(int type, int index) {
-                proxyModel.filter(findTxtSearch().getText());
+                Display.getInstance().invokeAndBlock(new Runnable() {
+                    public void run() {
+                        proxyModel.filter(findTxtSearch().getText());
+                    }
+                });
+                m.repaint();
             }
         });
+    }
+
+    @Override
+    protected void onCreateMain() {
+
     }
 
     @Override
@@ -91,32 +103,36 @@ public class StateMachine extends StateMachineBase {
         return listMain;
     }
 
-    Command getAceptExamCmd() {
-        if (aceptExam == null) {
-            aceptExam = new Command("Incluir") {
-                @Override
-                public void actionPerformed(ActionEvent ev) {
-
-                }
-            };
-        }
-        return aceptExam;
-    }
-
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if (event.getSource() != null) {
-            Hashtable<String, String> field = proxyModel.getItemSelected();
-            String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
-                    + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
-            Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
+        if (event.getSource() != null) { 
+            showForm("ExamDataDialog", null);
         }
+    }
+ 
+    @Override
+    protected void postExamDataDialog(Form f) {
+        Hashtable<String, String> field = proxyModel.getItemSelected();
+        if (field != null && !field.isEmpty()) {
+            findFullname(f).setText(field.get(ExamsModel.FIELD_FULLNAME));
+            findPrice(f).setText(field.get(ExamsModel.FIELD_PRICE));
+            findFreq(f).setText(field.get(ExamsModel.FIELD_FREQUENCY));
+        }
+    } 
+
+    @Override
+    protected void onExamDataDialog_YesButtonAction(Component c, ActionEvent event) {
+         Hashtable<String, String> field = proxyModel.getItemSelected();
+        String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
+                + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
+        Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
     }
 
     /**
      * Model for the exams list!
      */
     private static class ExamsModel extends FilterProxyListModel {
+
         //Fields´ constants
         static public String FIELD_PRICE = "price";
         static public String FIELD_FULLNAME = "fullname";

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Dialog" name="ExamDialog" cloudDestinationProperty="ExamDialog" uiid="Container" tactileTouch="false" snapToGrid="false" scrollableY="false" nextForm="Main" >
+  <component type="Label" name="lblIcon" cloudDestinationProperty="lblIcon" text="" icon="exam.png" gap="1" verticalAlignment="4" >
+  </component>
+  <component type="Container" name="MainDlgContainer" cloudDestinationProperty="MainDlgContainer" focusable="true" enabled="true" scrollVisible="false" snapToGrid="false" scrollableX="false" scrollableY="false" layout="TableLayout" tableLayoutRows="3" tableLayoutColumns="2" >
+    <component type="SpanLabel" name="fullname" cloudDestinationProperty="lblfullname" rtl="false" >
+      <layoutConstraint row="0" column="0" height="-1" width="-1" align="4" spanHorizontal="2" valign="-1" spanVertical="1" />
+      <custom name="text" type="java.lang.String" value="Examen" />
+    </component>
+    <component type="Label" name="price" cloudDestinationProperty="Label" tactileTouch="false" text="Gratis" >
+      <layoutConstraint row="1" column="1" height="-1" width="-1" align="-1" spanHorizontal="1" valign="-1" spanVertical="1" />
+    </component>
+    <component type="Label" name="lblprice" cloudDestinationProperty="lblprice" tactileTouch="false" text="Precio" >
+      <layoutConstraint row="1" column="0" height="-1" width="-1" align="-1" spanHorizontal="1" valign="-1" spanVertical="1" />
+    </component>
+    <component type="Label" name="lblfreq" cloudDestinationProperty="lblfreq" tactileTouch="false" text="Frecuencia" >
+    </component>
+    <component type="Label" name="freq" cloudDestinationProperty="freq" tactileTouch="false" text="Diario" >
+      <layoutConstraint row="2" column="1" height="-1" width="-1" align="-1" spanHorizontal="1" valign="-1" spanVertical="1" />
+    </component>
+  </component>
+<command name="Cancelar" id="0" action="" backCommand="true" /><command name="Incluir" id="1" action="Main" backCommand="false" /></component>
