@@ -22,7 +22,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
 
     public FilterProxyListModel(ListModel underlying) {
         this.underlying = underlying;
-        underlying.addDataChangedListener(this); 
+        underlying.addDataChangedListener(this);
     }
 
     private int getFilterOffset(int index) {
@@ -44,14 +44,22 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
 
     public void filter(String str) {
         filter = new Vector();
-        str = str.toUpperCase();
         for (int iter = 0; iter < underlying.getSize(); iter++) {
-            String element = ItemtoString(underlying.getItemAt(iter));
-            if (element.toUpperCase().indexOf(str) > -1) {
+            if (check(ItemtoString(underlying.getItemAt(iter)), str.toUpperCase())) {
                 filter.addElement(new Integer(iter));
             }
         }
         dataChanged(DataChangedListener.CHANGED, -1);
+    }
+    
+    /**
+     * Verifica que un objeto matchea el filtro
+     * @param o Objeto del modelo a comprobar
+     * @param str Cadena que se busca
+     * @return TRUE | FALSE Si matchea o no
+     */
+    protected boolean check(Object o, String str) {
+        return (o.toString().toUpperCase().indexOf(str) > -1);
     }
 
     public Object getItemAt(int index) {
@@ -72,7 +80,6 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
     public void setSelectedIndex(int index) {
         underlying.setSelectedIndex(getFilterOffset(index));
     }
-    
 
     public void addDataChangedListener(DataChangedListener l) {
         listeners.addElement(l);
@@ -105,7 +112,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
                 return;
             }
         }
-        for (int iter = 0; iter < listeners.size(); iter++) { 
+        for (int iter = 0; iter < listeners.size(); iter++) {
             ((DataChangedListener) listeners.elementAt(iter)).dataChanged(type, index);
         }
     }

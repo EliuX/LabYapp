@@ -2,7 +2,7 @@
  * Your application code goes here
  */
 package userclasses;
-
+ 
 import com.codename1.io.Log;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -14,7 +14,6 @@ import com.codename1.ui.List;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
-import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.ListModel;
 import com.codename1.ui.list.MultiList;
@@ -47,6 +46,8 @@ public class StateMachine extends StateMachineBase {
     /**
      * this method should be used to initialize variables instead of the
      * constructor/class scope to avoid race conditions
+     *
+     * @param res
      */
     @Override
     protected void initVars(Resources res) {
@@ -63,13 +64,12 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected boolean initListModelMultiList(List cmp) {
-        cmp.setModel(examsModel);
+        cmp.setModel(proxyModel);
         return true;
     }
 
     @Override
     protected void postMain(Form f) {
-        final MultiList m = findMultiList();
         findTxtSearch(f).addDataChangeListener(new DataChangedListener() {
             public void dataChanged(int type, int index) {
                 Display.getInstance().invokeAndBlock(new Runnable() {
@@ -77,7 +77,6 @@ public class StateMachine extends StateMachineBase {
                         proxyModel.filter(findTxtSearch().getText());
                     }
                 });
-                m.repaint();
             }
         });
     }
@@ -105,29 +104,37 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if (event.getSource() != null) { 
-            showForm("ExamDataDialog", null);
+        if (event.getSource() != null) {
+            Hashtable<String, String> field = proxyModel.getItemSelected();
+            String txt = field.get(ExamsModel.FIELD_FULLNAME) 
+                    + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
+                    + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
+            String freq = field.get(ExamsModel.FIELD_FREQUENCY);
+            if (freq != null && freq.trim().length() > 0) {
+                txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
+            }
+            boolean accepted = Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
+            findMultiList().getSelectedButton().setSelected(accepted);
         }
     }
- 
-    @Override
-    protected void postExamDataDialog(Form f) {
-        Hashtable<String, String> field = proxyModel.getItemSelected();
-        if (field != null && !field.isEmpty()) {
-            findFullname(f).setText(field.get(ExamsModel.FIELD_FULLNAME));
-            findPrice(f).setText(field.get(ExamsModel.FIELD_PRICE));
-            findFreq(f).setText(field.get(ExamsModel.FIELD_FREQUENCY));
-        }
-    } 
 
-    @Override
-    protected void onExamDataDialog_YesButtonAction(Component c, ActionEvent event) {
-         Hashtable<String, String> field = proxyModel.getItemSelected();
-        String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
-                + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
-        Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
-    }
+    /*@Override
+     protected void postExamDataDialog(Form f) {
+     Hashtable<String, String> field = proxyModel.getItemSelected();
+     if (field != null && !field.isEmpty()) {
+     findFullname(f).setText(field.get(ExamsModel.FIELD_FULLNAME));
+     findPrice(f).setText(field.get(ExamsModel.FIELD_PRICE));
+     findFreq(f).setText(field.get(ExamsModel.FIELD_FREQUENCY));
+     }
+     } 
 
+     @Override
+     protected void onExamDataDialog_YesButtonAction(Component c, ActionEvent event) {
+     Hashtable<String, String> field = proxyModel.getItemSelected();
+     String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
+     + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
+     Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
+     }*/
     /**
      * Model for the exams list!
      */

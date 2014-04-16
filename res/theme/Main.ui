@@ -4,16 +4,17 @@
   <component type="MultiList" name="MultiList" cloudDestinationProperty="MultiList" hint="" >
     <layoutConstraint value="Center" />
     <mapItems>
-      <stringItem key="otro" value="El otro" />
-      <stringItem key="freq" value="moneda" />
       <stringItem key="price" value="200 cuc" />
+      <stringItem key="freq" value="moneda" />
       <stringItem key="fullname" value="Entrada 1" />
+      <stringItem key="otro" value="El otro" />
     </mapItems>
     <custom name="name1" type="java.lang.String" value="fullname" />
     <custom name="name2" type="java.lang.String" value="price" />
-    <custom name="name3" type="java.lang.String" value="freq" />
-    <custom name="name4" type="java.lang.String" value="otro" />
-    <custom name="iconName" type="java.lang.String" value="exam.png" />
+    <custom name="name3" type="java.lang.String" value="frecuencia" />
+    <custom name="name4" type="java.lang.String" value="otros" />
+    <custom name="iconName" type="java.lang.String" value="" />
+    <custom name="horizontalLayout" type="java.lang.Boolean" value="true" />
     <custom name="checkBox" type="java.lang.Boolean" value="true" />
   </component>
   <component type="TextField" name="txtSearch" cloudBoundProperty="text" cloudDestinationProperty="txtSearch" text="" hint="&#xbf;Qu&#xe9; examenes desea hacerse?" >
