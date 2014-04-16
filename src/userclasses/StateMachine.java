@@ -103,6 +103,11 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
+    protected String getFirstFormName() {
+        return "MainSplash";
+    }     
+
+    @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
         if (event.getSource() != null) {
             Hashtable<String, String> field = proxyModel.getItemSelected();
@@ -118,28 +123,16 @@ public class StateMachine extends StateMachineBase {
         }
     }
 
-    /*@Override
-     protected void postExamDataDialog(Form f) {
-     Hashtable<String, String> field = proxyModel.getItemSelected();
-     if (field != null && !field.isEmpty()) {
-     findFullname(f).setText(field.get(ExamsModel.FIELD_FULLNAME));
-     findPrice(f).setText(field.get(ExamsModel.FIELD_PRICE));
-     findFreq(f).setText(field.get(ExamsModel.FIELD_FREQUENCY));
-     }
-     } 
 
-     @Override
-     protected void onExamDataDialog_YesButtonAction(Component c, ActionEvent event) {
-     Hashtable<String, String> field = proxyModel.getItemSelected();
-     String txt = field.get(ExamsModel.FIELD_FULLNAME) + Constants.NEWLINE + "Precio:" + Constants.INDENT + field.get(ExamsModel.FIELD_PRICE)
-     + Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY);
-     Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
-     }*/
+    @Override
+    protected void onHomeView_BtnSolicitarAction(Component c, ActionEvent event) {
+        showForm("Main", null);
+    }  
+    
     /**
      * Model for the exams list!
      */
     private static class ExamsModel extends FilterProxyListModel {
-
         //Fields´ constants
         static public String FIELD_PRICE = "price";
         static public String FIELD_FULLNAME = "fullname";
@@ -157,5 +150,5 @@ public class StateMachine extends StateMachineBase {
         Hashtable<String, String> getItemSelected() {
             return (Hashtable<String, String>) getItemAt(getSelectedIndex());
         }
-    }
+    } 
 }

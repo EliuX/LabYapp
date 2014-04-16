@@ -4,8 +4,12 @@
     <image name="exam.png" type="multi"  />
     <ui name="ExamDataDialog" />
     <data name="exams.json" />
+    <ui name="HomeView" />
+    <image name="logoLabYapp.png" type="multi"  />
     <ui name="Main" />
+    <ui name="MainSplash" />
     <theme name="Theme">
         <val key="@includeNativeBool" value="true" />
     </theme>
+    <image name="tube-logo.png" type="multi"  />
 </resource>

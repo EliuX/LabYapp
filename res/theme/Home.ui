@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Container" name="Home" cloudDestinationProperty="Home" uiid="Form" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
+  <component type="Container" name="BodyHome" cloudDestinationProperty="Container1" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" >
+    <layoutConstraint value="Center" />
+    <component type="Label" name="LogoHome" cloudDestinationProperty="Label1" text="" icon="logoLabYapp.png" verticalAlignment="4" textPosition="1" >
+    </component>
+  </component>
+  <component type="Container" name="HomeFooter" cloudDestinationProperty="HomeFooter" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="South" />
+    <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
+    </component>
+  </component>
+</component>

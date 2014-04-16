@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="MainSplash" cloudDestinationProperty="MainSplash" layout="BorderLayout" borderLayoutAbsoluteCenter="true" nextForm="HomeView" title="" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="South" />
+    <component type="Container" name="Container2" cloudDestinationProperty="Container2" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+      <component type="InfiniteProgress" name="InfiniteProgress" cloudDestinationProperty="InfiniteProgress" >
+      </component>
+    </component>
+    <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+      <component type="Label" name="Label" cloudDestinationProperty="Label" scrollVisible="false" text="Cargando Ex&#xe1;menes" >
+      </component>
+    </component>
+  </component>
+  <component type="Container" name="Container1" cloudDestinationProperty="Container1" >
+    <layoutConstraint value="Center" />
+    <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="" icon="tube-logo.png" >
+    </component>
+  </component>
+</component>

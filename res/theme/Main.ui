@@ -4,10 +4,10 @@
   <component type="MultiList" name="MultiList" cloudDestinationProperty="MultiList" hint="" >
     <layoutConstraint value="Center" />
     <mapItems>
+      <stringItem key="otro" value="El otro" />
+      <stringItem key="fullname" value="Entrada 1" />
       <stringItem key="price" value="200 cuc" />
       <stringItem key="freq" value="moneda" />
-      <stringItem key="fullname" value="Entrada 1" />
-      <stringItem key="otro" value="El otro" />
     </mapItems>
     <custom name="name1" type="java.lang.String" value="fullname" />
     <custom name="name2" type="java.lang.String" value="price" />
