@@ -6,10 +6,10 @@ package userclasses;
 import com.codename1.io.Log;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
-import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
+import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
@@ -20,9 +20,9 @@ import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
-import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
 import userclasses.common.FilterProxyListModel;
 
@@ -36,9 +36,8 @@ public class StateMachine extends StateMachineBase {
     ExamsModel proxyModel;
     TextField btnSearch = null;
     MultiList listMain = null;
-    Command aceptExam;
-    Image iconExam;
-
+    Command aceptExam; 
+    Label lblstatus;
     public StateMachine(String resFile) {
         super(resFile);
     }
@@ -51,15 +50,9 @@ public class StateMachine extends StateMachineBase {
      */
     @Override
     protected void initVars(Resources res) {
-        Hashtable<String, Vector> data = DataManager.getInstance(res).getData("exams.json");
-        Vector vData = data.get("root");
+        Vector vData = DataManager.getInstance(res).getData("exams.json"); 
         examsModel = new DefaultListModel(vData);
-        proxyModel = new ExamsModel(examsModel);
-        try {
-            iconExam = Image.createImage("/exam.png");
-        } catch (IOException ex) {
-            Log.e(ex);
-        }
+        proxyModel = new ExamsModel(examsModel);  
     }
 
     @Override
@@ -78,13 +71,10 @@ public class StateMachine extends StateMachineBase {
                     }
                 });
             }
-        });
-    }
-
-    @Override
-    protected void onCreateMain() {
-
-    }
+        });  
+        lblstatus = findStatusExams(f);
+        onDataSelectionChange();
+    } 
 
     @Override
     public TextField findTxtSearch() {
@@ -97,10 +87,18 @@ public class StateMachine extends StateMachineBase {
     @Override
     public MultiList findMultiList() {
         if (listMain == null) {
-            listMain = super.findMultiList(); //To change body of generated methods, choose Tools | Templates.  
+            listMain = super.findMultiList(); 
         }
         return listMain;
-    }
+    }  
+
+    @Override
+    public Label findStatusExams() {
+         if (lblstatus == null) {
+            lblstatus = super.findStatusExams(); 
+        }
+        return lblstatus;      
+    }    
 
     @Override
     protected String getFirstFormName() {
@@ -108,19 +106,11 @@ public class StateMachine extends StateMachineBase {
     }     
 
     @Override
-    protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if (event.getSource() != null) {
-            Hashtable<String, String> field = proxyModel.getItemSelected();
-            String txt = field.get(ExamsModel.FIELD_FULLNAME) 
-                    + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
-                    + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
-            String freq = field.get(ExamsModel.FIELD_FREQUENCY);
-            if (freq != null && freq.trim().length() > 0) {
-                txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
-            }
-            boolean accepted = Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, iconExam, "Incluir", "Cancelar");
-            findMultiList().getSelectedButton().setSelected(accepted);
-        }
+    protected void onMain_MultiListAction(Component c, ActionEvent event) {      
+       if (event.getSource() != null) {  
+            DataManager.getInstance().toogleSelected(proxyModel.getItemSelected());  
+            onDataSelectionChange();
+       }
     }
 
 
@@ -128,6 +118,19 @@ public class StateMachine extends StateMachineBase {
     protected void onHomeView_BtnSolicitarAction(Component c, ActionEvent event) {
         showForm("Main", null);
     }  
+    
+    protected void onDataSelectionChange(){
+        int count_of_exams =  DataManager.getInstance().getSelectedCount();
+        Label lbl = findStatusExams();
+        if(lbl==null){
+            return;
+        }
+        if(count_of_exams==0){
+            lbl.setText(Utils.NO_EXAMS_SELECTED);
+        }else{ 
+            lbl.setText(count_of_exams+" "+Utils.EXAMS_SELECTED);
+        }      
+    }
     
     /**
      * Model for the exams list!
@@ -139,7 +142,7 @@ public class StateMachine extends StateMachineBase {
         static public String FIELD_FREQUENCY = "freq";
 
         public ExamsModel(ListModel model) {
-            super(model);
+            super(model);  
         }
 
         @Override
@@ -150,5 +153,5 @@ public class StateMachine extends StateMachineBase {
         Hashtable<String, String> getItemSelected() {
             return (Hashtable<String, String>) getItemAt(getSelectedIndex());
         }
-    } 
+    }   
 }

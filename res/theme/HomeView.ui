@@ -8,7 +8,7 @@
   </component>
   <component type="Container" name="HomeFooter" cloudDestinationProperty="HomeFooter" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
-    <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
+    <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButton" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
     </component>
   </component>
 </component>

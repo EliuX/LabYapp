@@ -8,11 +8,14 @@ package userclasses.common;
 
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
+import com.codename1.ui.List;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Vector;
 
 /**
  *
@@ -21,6 +24,7 @@ import java.util.Hashtable;
 public class DataManager {
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
+    ArrayList<Hashtable<String, String>> selection = new ArrayList<Hashtable<String, String>>();
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
      static public DataManager getInstance() {
@@ -32,7 +36,7 @@ public class DataManager {
         return INSTANCE;
     }   
     
-    public Hashtable getData(String filename) {
+    public Vector getData(String filename) {
         if(response==null || response.isEmpty()){
             try {
                 InputStream istream = res.getData(filename);
@@ -42,7 +46,29 @@ public class DataManager {
                 Log.e(ex);
             } 
         }
-        return response;
+        return (Vector) response.get("root");
+    }
+
+    /**
+     * Switchea una seleccion del modelo de datos
+     * @param index
+     * @return 
+     */
+    public ArrayList<Hashtable<String, String>> toogleSelected(Hashtable<String, String> index) {  
+        if(selection.contains(index))
+        {
+            selection.remove(index);
+        }else{
+            selection.add(index);
+        }
+        return selection;
     }
     
+    /**
+     * Cantidad de examenes seleccionados
+     * @return cantidad de examenes seleccionados
+     */
+    public int getSelectedCount(){
+        return selection.size();
+    }
 }
