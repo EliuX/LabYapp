@@ -8,7 +8,6 @@ package userclasses.common;
 
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
-import com.codename1.ui.List;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
+import userclasses.ExamsModel;
 
 /**
  *
@@ -70,5 +70,15 @@ public class DataManager {
      */
     public int getSelectedCount(){
         return selection.size();
+    }
+    
+    
+    public int getCountOfMoney(){
+        int count_money = 0; 
+        for(Hashtable<String, String> exam : selection){
+          String price = exam.get(ExamsModel.FIELD_PRICE);
+          count_money+= Float.valueOf(price.substring(1));
+        } 
+        return count_money;
     }
 }

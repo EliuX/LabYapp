@@ -2,15 +2,26 @@
 
 <resource majorVersion="1" minorVersion="6" useXmlUI="false">
     <image name="exam.png" type="multi"  />
-    <ui name="ExamDataDialog" />
     <data name="exams.json" />
     <ui name="HomeView" />
     <image name="logoLabYapp.png" type="multi"  />
     <ui name="Main" />
     <ui name="MainSplash" />
     <image name="mini32x32.png" type="multi"  />
+    <image name="tests64x64.jpg" type="multi"  />
     <theme name="Theme">
         <val key="@includeNativeBool" value="true" />
+        <val key="BtnConsusalud.align" value="4" />
+        <val key="BtnConsusalud.bgColor" value="e5bd22" />
+        <border key="BtnConsusalud.border" type="rounded" thickness="0" arcW="1" arcH="1" color="16763904" />
+        <val key="BtnConsusalud.fgColor" value="333333" />
+        <val key="BtnConsusalud.margin" value="0,20,0,0" />
+        <val key="BtnConsusalud.padding" value="10,10,10,10" />
+        <val key="BtnConsusalud.transparency" value="100" />
+        <val key="GreenLabel.bgColor" value="6a9b00" />
+        <val key="GreenLabel.fgColor" value="e4faef" />
+        <font key="GreenLabel.font" type="system" face="64" style="1" size="0" />
+        <val key="GreenLabel.transparency" value="250" />
         <val key="HomeMainButton.align" value="4" />
         <val key="HomeMainButton.bgColor" value="2D3E50" />
         <val key="HomeMainButton.fgColor" value="ffffff" />
@@ -24,6 +35,14 @@
         <val key="HomeMainButton.sel#fgColor" value="3333" />
         <val key="HomeMainButton.textDecoration" value="0" />
         <val key="HomeMainButton.transparency" value="255" />
+        <val key="LblExam.align" value="4" />
+        <val key="LblExam.derive" value="Label" />
+        <font key="LblExam.font" type="system" face="0" style="0" size="0" />
+        <val key="LblExam.padding" value="10,0,0,0" />
+        <val key="StatusMoneyFooter.bgColor" value="FBFF01" />
+        <val key="StatusMoneyFooter.derive" value="GreenLabel" />
+        <val key="StatusMoneyFooter.fgColor" value="333333" />
+        <val key="StatusMoneyFooter.transparency" value="200" />
     </theme>
     <image name="tube-logo.png" type="multi"  />
 </resource>

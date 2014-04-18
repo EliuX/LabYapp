@@ -8,7 +8,7 @@
       </component>
     </component>
     <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
-      <component type="Label" name="Label" cloudDestinationProperty="Label" scrollVisible="false" text="Cargando Ex&#xe1;menes" >
+      <component type="Label" name="Label" cloudDestinationProperty="Label" scrollVisible="false" text="Cargando Ex&#xe1;menes de Laboratorio" >
       </component>
     </component>
   </component>

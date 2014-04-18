@@ -3,12 +3,18 @@
 <component type="Form" name="HomeView" cloudDestinationProperty="HomeView" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
   <component type="Container" name="BodyHome" cloudDestinationProperty="Container1" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" >
     <layoutConstraint value="Center" />
-    <component type="Label" name="LogoHome" cloudDestinationProperty="Label1" text="" icon="logoLabYapp.png" verticalAlignment="4" textPosition="1" >
+    <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+      <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="CONSUSALUD" >
+      </component>
+      <component type="Label" name="LogoHome" cloudDestinationProperty="Label1" text="" icon="logoLabYapp.png" verticalAlignment="4" textPosition="1" >
+      </component>
     </component>
   </component>
   <component type="Container" name="HomeFooter" cloudDestinationProperty="HomeFooter" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
     <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButton" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
+    </component>
+    <component type="Button" name="btnAbout" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButton" text="Acerca de nuestro Laboratorio" verticalAlignment="0" textPosition="0" >
     </component>
   </component>
 </component>
