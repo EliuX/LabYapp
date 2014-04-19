@@ -13,6 +13,7 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
+import com.codename1.ui.animations.CommonTransitions;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
 import com.codename1.ui.list.DefaultListModel;
@@ -32,8 +33,13 @@ public class StateMachine extends StateMachineBase {
     ExamsModel proxyModel;
     TextField btnSearch = null;
     MultiList listMain = null;
-    Command aceptExam;
-    SpanLabel lblstatus, lblmoney; 
+    /**
+     * Versiones locales de recursos: Optimizacion
+     */ 
+    SpanLabel lblstatus;
+    Label lblmoney;
+    Container footerBar;
+
     public StateMachine(String resFile) {
         super(resFile);
     }
@@ -69,6 +75,8 @@ public class StateMachine extends StateMachineBase {
             }
         });
         lblstatus = findStatusExams(f);
+        lblmoney = findStatusMoney(f);
+        footerBar = findFooterBar(f);
         onDataSelectionChange();
     }
 
@@ -95,7 +103,16 @@ public class StateMachine extends StateMachineBase {
         return lblstatus;
     }
 
-    public SpanLabel findStatusMoney() {
+    @Override
+    public Container findFooterBar() {
+        if (footerBar == null) {
+            footerBar = super.findFooterBar();
+        }
+        return footerBar;
+    }
+
+    @Override
+    public Label findStatusMoney() {
         if (lblmoney == null) {
             lblmoney = super.findStatusMoney();
         }
@@ -127,17 +144,36 @@ public class StateMachine extends StateMachineBase {
      */
     protected void onDataSelectionChange() {
         SpanLabel lblExams = findStatusExams();
-        SpanLabel lblMoney = findStatusMoney();
+        Label lblMoney = findStatusMoney();
         int count_exams = DataManager.getInstance().getSelectedCount();
-        Container footer = findFooterBar();
-        if (footer != null) {
-            footer.setVisible(count_exams > 0);
-        }
         if (lblExams != null) {
             lblExams.setText(String.valueOf(count_exams));
         }
         if (lblMoney != null) {
             lblMoney.setText("$" + DataManager.getInstance().getCountOfMoney());
         }
+    }
+
+    /**
+     * Shows or hides the footer
+     *
+     * @param visible If it's visible
+     */
+    protected void toogleFooter(boolean visible) {
+        Container footer = findFooterBar();
+        if (footer != null) {
+            footer.setVisible(true);
+            footer.setVisible(visible);
+            footer.repaint();
+            if (!visible) {
+                footer.getParent().repaint();
+            }
+        }
+    } 
+
+    @Override
+    protected boolean onMainTermin(Command cmd) {
+        showForm("FormExamsConfirm", cmd);
+        return true;
     }
 }

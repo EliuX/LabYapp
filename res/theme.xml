@@ -3,6 +3,7 @@
 <resource majorVersion="1" minorVersion="6" useXmlUI="false">
     <image name="exam.png" type="multi"  />
     <data name="exams.json" />
+    <ui name="FormExamsConfirm" />
     <ui name="HomeView" />
     <image name="logoLabYapp.png" type="multi"  />
     <ui name="Main" />
@@ -15,12 +16,17 @@
         <val key="BtnConsusalud.bgColor" value="e5bd22" />
         <border key="BtnConsusalud.border" type="rounded" thickness="0" arcW="1" arcH="1" color="16763904" />
         <val key="BtnConsusalud.fgColor" value="333333" />
+        <font key="BtnConsusalud.font" type="system" face="32" style="0" size="16" />
         <val key="BtnConsusalud.margin" value="0,20,0,0" />
-        <val key="BtnConsusalud.padding" value="10,10,10,10" />
-        <val key="BtnConsusalud.transparency" value="100" />
+        <val key="BtnConsusalud.padding" value="5,5,5,5" />
+        <val key="BtnConsusalud.textDecoration" value="16" />
+        <val key="BtnConsusalud.transparency" value="250" />
         <val key="GreenLabel.bgColor" value="6a9b00" />
         <val key="GreenLabel.fgColor" value="e4faef" />
         <font key="GreenLabel.font" type="system" face="64" style="1" size="0" />
+        <val key="GreenLabel.padding" value="5,8,5,5" />
+        <val key="GreenLabel.press#derive" value="StatusMoneyFooter" />
+        <val key="GreenLabel.sel#derive" value="StatusMoneyFooter" />
         <val key="GreenLabel.transparency" value="250" />
         <val key="HomeMainButton.align" value="4" />
         <val key="HomeMainButton.bgColor" value="2D3E50" />
@@ -39,9 +45,11 @@
         <val key="LblExam.derive" value="Label" />
         <font key="LblExam.font" type="system" face="0" style="0" size="0" />
         <val key="LblExam.padding" value="10,0,0,0" />
-        <val key="StatusMoneyFooter.bgColor" value="FBFF01" />
+        <val key="StatusExamFooter.bgColor" value="ffff99" />
+        <val key="StatusExamFooter.derive" value="StatusMoneyFooter" />
+        <val key="StatusExamFooter.fgColor" value="333333" />
         <val key="StatusMoneyFooter.derive" value="GreenLabel" />
-        <val key="StatusMoneyFooter.fgColor" value="333333" />
+        <val key="StatusMoneyFooter.padding" value="10,10,10,10" />
         <val key="StatusMoneyFooter.transparency" value="200" />
     </theme>
     <image name="tube-logo.png" type="multi"  />

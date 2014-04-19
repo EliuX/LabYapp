@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="FormExamsConfirm" cloudDestinationProperty="FormExamsConfirm" title="Confirme su selecci&#xf3;n" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="TableLayout" tableLayoutRows="2" tableLayoutColumns="3" >
+  </component>
+</component>

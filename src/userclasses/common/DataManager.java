@@ -21,13 +21,19 @@ import userclasses.ExamsModel;
  *
  * @author EliuX
  */
-public class DataManager {
+public final class DataManager {
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
-    ArrayList<Hashtable<String, String>> selection = new ArrayList<Hashtable<String, String>>();
+    ArrayList<Hashtable<String, String>> selection;
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
-     static public DataManager getInstance() {
+
+    private DataManager() {
+        resetSelection();
+    }
+    
+    
+    static public DataManager getInstance() {
         return INSTANCE;
     }
 
@@ -63,6 +69,11 @@ public class DataManager {
         }
         return selection;
     }
+    
+    public void resetSelection(){
+        selection = new ArrayList<Hashtable<String, String>>();
+    }
+    
     
     /**
      * Cantidad de examenes seleccionados
