@@ -57,21 +57,28 @@ public final class DataManager {
 
     /**
      * Switchea una seleccion del modelo de datos
-     * @param index
-     * @return 
+     * @param exam  Elementos seleccionado instancia de Hashtable
+     * @param selected  TRUE | FALSE Si se selecciono el elemento
+     * @return La instancia de la seleccion
      */
-    public ArrayList<Hashtable<String, String>> toogleSelected(Hashtable<String, String> index) {  
-        if(selection.contains(index))
+    public ArrayList<Hashtable<String, String>> toogleSelected(Hashtable<String, String> exam, Boolean selected) {  
+        if(selected) //Seleccionado
         {
-            selection.remove(index);
-        }else{
-            selection.add(index);
+            if(!selection.contains(exam))
+                selection.add(exam);
+        }else{      //Deseleccionado
+            if(selection.contains(exam))
+                selection.remove(exam);
         }
+        exam.put(ExamsModel.FIELD_SELECTION, selected.toString());  
         return selection;
     }
     
     public void resetSelection(){
-        selection = new ArrayList<Hashtable<String, String>>();
+       for(Hashtable<String, String> exam : selection){
+          exam.put(ExamsModel.FIELD_SELECTION, String.valueOf(false));
+          selection.remove(exam);
+        } 
     }
     
     
@@ -79,8 +86,8 @@ public final class DataManager {
      * Cantidad de examenes seleccionados
      * @return cantidad de examenes seleccionados
      */
-    public int getSelectedCount(){
-        return selection.size();
+    public ArrayList<Hashtable<String, String>> getSelection(){
+        return selection;
     }
     
     

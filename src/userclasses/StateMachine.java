@@ -13,14 +13,16 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
-import com.codename1.ui.animations.CommonTransitions;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Vector;
+import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
 
 /**
@@ -39,6 +41,7 @@ public class StateMachine extends StateMachineBase {
     SpanLabel lblstatus;
     Label lblmoney;
     Container footerBar;
+    private String Hashtable;
 
     public StateMachine(String resFile) {
         super(resFile);
@@ -59,7 +62,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected boolean initListModelMultiList(List cmp) {
-        cmp.setModel(proxyModel);
+        cmp.setModel(proxyModel); 
         return true;
     }
 
@@ -96,6 +99,7 @@ public class StateMachine extends StateMachineBase {
         return listMain;
     }
 
+    @Override
     public SpanLabel findStatusExams() {
         if (lblstatus == null) {
             lblstatus = super.findStatusExams();
@@ -126,10 +130,29 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if (event.getSource() != null) {
-            DataManager.getInstance().toogleSelected(proxyModel.getItemSelected());
+        if (event.getSource() != null) { 
+            Hashtable<String, String> field = proxyModel.getItemSelected();
+            Boolean accepted = ShowDataExam(field);  
+            DataManager.getInstance().toogleSelected(field,accepted); 
             onDataSelectionChange();
         }
+        event.consume();
+    }
+    
+    /**
+     * Muestra un mensaje con los datos de un examen
+     * @param field Datos del examen
+     * @return 
+     */
+    public Boolean ShowDataExam(Hashtable<String, String> field){
+            String txt = field.get(ExamsModel.FIELD_FULLNAME) 
+                    + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
+                    + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
+            String freq = field.get(ExamsModel.FIELD_FREQUENCY);
+            if (freq != null && freq.trim().length() > 0) {
+                txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
+            }
+            return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Incluir", "Este no"); 
     }
 
     @Override
@@ -145,7 +168,7 @@ public class StateMachine extends StateMachineBase {
     protected void onDataSelectionChange() {
         SpanLabel lblExams = findStatusExams();
         Label lblMoney = findStatusMoney();
-        int count_exams = DataManager.getInstance().getSelectedCount();
+        int count_exams = DataManager.getInstance().getSelection().size();
         if (lblExams != null) {
             lblExams.setText(String.valueOf(count_exams));
         }

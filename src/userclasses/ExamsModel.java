@@ -21,9 +21,10 @@ import userclasses.common.FilterProxyListModel;
  */
 public class ExamsModel extends FilterProxyListModel {
     //Fields´ constants
-    static public String FIELD_PRICE = "price";
-    static public String FIELD_FULLNAME = "fullname";
-    static public String FIELD_FREQUENCY = "freq";
+    static public String FIELD_PRICE        = "price";
+    static public String FIELD_FULLNAME     = "fullname";
+    static public String FIELD_FREQUENCY    = "freq";
+    static public String FIELD_SELECTION    = "selected";
 
     public ExamsModel(ListModel model) {
         super(model);  
