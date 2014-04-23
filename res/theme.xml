@@ -5,6 +5,7 @@
     <data name="exams.json" />
     <ui name="FormExamsConfirm" />
     <ui name="HomeView" />
+    <image name="ic_input_delete.png" type="multi"  />
     <image name="logoLabYapp.png" type="multi"  />
     <ui name="Main" />
     <ui name="MainSplash" />

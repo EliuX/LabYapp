@@ -37,9 +37,8 @@ public class StateMachine extends StateMachineBase {
     MultiList listMain = null;
     /**
      * Versiones locales de recursos: Optimizacion
-     */ 
-    SpanLabel lblstatus;
-    Label lblmoney;
+     */
+    Label lblstatus, lblmoney;
     Container footerBar;
     private String Hashtable;
 
@@ -62,7 +61,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected boolean initListModelMultiList(List cmp) {
-        cmp.setModel(proxyModel); 
+        cmp.setModel(proxyModel);
         return true;
     }
 
@@ -100,7 +99,7 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
-    public SpanLabel findStatusExams() {
+    public Label findStatusExams() {
         if (lblstatus == null) {
             lblstatus = super.findStatusExams();
         }
@@ -130,29 +129,30 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
-        if (event.getSource() != null) { 
+        if (event.getSource() != null) {
             Hashtable<String, String> field = proxyModel.getItemSelected();
-            Boolean accepted = ShowDataExam(field);  
-            DataManager.getInstance().toogleSelected(field,accepted); 
+            Boolean accepted = ShowDataExam(field);
+            DataManager.getInstance().toogleSelected(field, accepted);
             onDataSelectionChange();
         }
         event.consume();
     }
-    
+
     /**
      * Muestra un mensaje con los datos de un examen
+     *
      * @param field Datos del examen
-     * @return 
+     * @return
      */
-    public Boolean ShowDataExam(Hashtable<String, String> field){
-            String txt = field.get(ExamsModel.FIELD_FULLNAME) 
-                    + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
-                    + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
-            String freq = field.get(ExamsModel.FIELD_FREQUENCY);
-            if (freq != null && freq.trim().length() > 0) {
-                txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
-            }
-            return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Incluir", "Este no"); 
+    public Boolean ShowDataExam(Hashtable<String, String> field) {
+        String txt = field.get(ExamsModel.FIELD_FULLNAME)
+                + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
+                + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
+        String freq = field.get(ExamsModel.FIELD_FREQUENCY);
+        if (freq != null && freq.trim().length() > 0) {
+            txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
+        }
+        return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Sí", "No");
     }
 
     @Override
@@ -166,7 +166,7 @@ public class StateMachine extends StateMachineBase {
      * sistema
      */
     protected void onDataSelectionChange() {
-        SpanLabel lblExams = findStatusExams();
+        Label lblExams = findStatusExams();
         Label lblMoney = findStatusMoney();
         int count_exams = DataManager.getInstance().getSelection().size();
         if (lblExams != null) {
@@ -192,11 +192,18 @@ public class StateMachine extends StateMachineBase {
                 footer.getParent().repaint();
             }
         }
-    } 
+    }
 
-    @Override
     protected boolean onMainTermin(Command cmd) {
         showForm("FormExamsConfirm", cmd);
         return true;
+    }
+
+    @Override
+    protected void onMain_BtnResetAction(Component c, ActionEvent event) { 
+       event.consume();
+       DataManager.getInstance().resetSelection();
+       findMultiList().repaint();
+       onDataSelectionChange();
     }
 }

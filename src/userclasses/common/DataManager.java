@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package userclasses.common;
 
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
+import com.codename1.ui.Display;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +21,8 @@ import userclasses.ExamsModel;
  *
  * @author EliuX
  */
-public final class DataManager {
+public class DataManager {
+
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
     ArrayList<Hashtable<String, String>> selection;
@@ -31,8 +32,7 @@ public final class DataManager {
     private DataManager() {
         resetSelection();
     }
-    
-    
+
     static public DataManager getInstance() {
         return INSTANCE;
     }
@@ -40,63 +40,67 @@ public final class DataManager {
     static public DataManager getInstance(Resources resources) {
         res = resources;
         return INSTANCE;
-    }   
-    
+    }
+
     public Vector getData(String filename) {
-        if(response==null || response.isEmpty()){
+        if (response == null || response.isEmpty()) {
             try {
                 InputStream istream = res.getData(filename);
                 InputStreamReader reader = new InputStreamReader(istream);
                 response = parser.parse(reader);
             } catch (IOException ex) {
                 Log.e(ex);
-            } 
+            }
         }
         return (Vector) response.get("root");
     }
 
     /**
      * Switchea una seleccion del modelo de datos
-     * @param exam  Elementos seleccionado instancia de Hashtable
-     * @param selected  TRUE | FALSE Si se selecciono el elemento
-     * @return La instancia de la seleccion
+     *
+     * @param exam Elementos seleccionado instancia de Hashtable
+     * @param selected TRUE | FALSE Si se selecciono el elemento
      */
-    public ArrayList<Hashtable<String, String>> toogleSelected(Hashtable<String, String> exam, Boolean selected) {  
-        if(selected) //Seleccionado
+    public void toogleSelected(Hashtable<String, String> exam, Boolean selected) {
+        if (selected) //Seleccionado
         {
-            if(!selection.contains(exam))
+            if (!selection.contains(exam)) {
                 selection.add(exam);
-        }else{      //Deseleccionado
-            if(selection.contains(exam))
+            }
+        } else {      //Deseleccionado
+            if (selection.contains(exam)) {
                 selection.remove(exam);
+            }
         }
-        exam.put(ExamsModel.FIELD_SELECTION, selected.toString());  
-        return selection;
+        exam.put(ExamsModel.FIELD_SELECTION, selected.toString());
     }
-    
-    public void resetSelection(){
-       for(Hashtable<String, String> exam : selection){
-          exam.put(ExamsModel.FIELD_SELECTION, String.valueOf(false));
-          selection.remove(exam);
-        } 
+
+    synchronized public void resetSelection() {
+        if (selection == null) {
+            selection = new ArrayList<Hashtable<String, String>>();
+        } else {  
+            for (Hashtable<String, String> exam : selection) {
+                exam.put(ExamsModel.FIELD_SELECTION, Boolean.FALSE.toString());
+            } 
+            selection.clear();
+        }
     }
-    
-    
+
     /**
      * Cantidad de examenes seleccionados
+     *
      * @return cantidad de examenes seleccionados
      */
-    public ArrayList<Hashtable<String, String>> getSelection(){
+    public ArrayList<Hashtable<String, String>> getSelection() {
         return selection;
     }
-    
-    
-    public int getCountOfMoney(){
-        int count_money = 0; 
-        for(Hashtable<String, String> exam : selection){
-          String price = exam.get(ExamsModel.FIELD_PRICE);
-          count_money+= Float.valueOf(price.substring(1));
-        } 
+
+    public int getCountOfMoney() {
+        int count_money = 0;
+        for (Hashtable<String, String> exam : selection) {
+            String price = exam.get(ExamsModel.FIELD_PRICE);
+            count_money += Float.valueOf(price.substring(1));
+        }
         return count_money;
     }
 }
