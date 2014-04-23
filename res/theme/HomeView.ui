@@ -14,7 +14,7 @@
     <layoutConstraint value="South" />
     <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButton" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
     </component>
-    <component type="Button" name="btnAbout" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButton" text="Acerca de nuestro Laboratorio" verticalAlignment="0" textPosition="0" >
+    <component type="Button" name="btnAbout" cloudDestinationProperty="btnSolicitar" commandName="Acerca de nuestro Laboratorio" commandId="2" commandAction="FormAboutConSuSalud" commandBack="false" uiid="HomeMainButton" text="Acerca de nuestro Laboratorio" verticalAlignment="0" textPosition="0" >
     </component>
   </component>
 </component>

@@ -3,7 +3,8 @@
 <resource majorVersion="1" minorVersion="6" useXmlUI="false">
     <image name="exam.png" type="multi"  />
     <data name="exams.json" />
-    <ui name="FormExamsConfirm" />
+    <ui name="FormAboutConSuSalud" />
+    <ui name="FormRequest" />
     <ui name="HomeView" />
     <image name="ic_input_delete.png" type="multi"  />
     <image name="logoLabYapp.png" type="multi"  />
@@ -19,7 +20,7 @@
         <val key="BtnConsusalud.fgColor" value="333333" />
         <font key="BtnConsusalud.font" type="system" face="32" style="0" size="16" />
         <val key="BtnConsusalud.margin" value="0,20,0,0" />
-        <val key="BtnConsusalud.padding" value="5,5,5,5" />
+        <val key="BtnConsusalud.padding" value="5,10,5,5" />
         <val key="BtnConsusalud.textDecoration" value="16" />
         <val key="BtnConsusalud.transparency" value="250" />
         <val key="GreenLabel.bgColor" value="6a9b00" />

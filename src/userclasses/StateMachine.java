@@ -157,7 +157,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onHomeView_BtnSolicitarAction(Component c, ActionEvent event) {
-        Dialog.show("Exámenes de laboratorio", "Seleccione 1 o más exámenes que desee hacerse en el laboratorio de CONSUSALUD\n¡Todas las visitas a domicilio son GRATIS!", "Entiendo", null);
+        Dialog.show("Exámenes de laboratorio", "Seleccione 1 o más exámenes que desee hacerse en el laboratorio de CONSUSALUD\n¡Todas las visitas a domicilio son GRATIS y sin prepago!", "Entiendo", null);
         showForm("Main", null);
     }
 
@@ -195,7 +195,7 @@ public class StateMachine extends StateMachineBase {
     }
 
     protected boolean onMainTermin(Command cmd) {
-        showForm("FormExamsConfirm", cmd);
+        showForm("FormRequest", cmd);
         return true;
     }
 
@@ -205,5 +205,5 @@ public class StateMachine extends StateMachineBase {
        DataManager.getInstance().resetSelection();
        findMultiList().repaint();
        onDataSelectionChange();
-    }
+    } 
 }

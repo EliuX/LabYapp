@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="FormAboutConSuSalud" cloudDestinationProperty="FormAboutConSuSalud" scrollVisible="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" cyclicFocus="true" >
+  <component type="Container" name="HeaderAbout" cloudDestinationProperty="HeaderAbout" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="North" />
+    <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="Consusalud Servicio Integral de Salud" verticalAlignment="0" >
+    </component>
+    <component type="ComponentGroup" name="ComponentGroup1" cloudDestinationProperty="ComponentGroup1" >
+      <component type="MultiButton" name="MultiButton4" cloudDestinationProperty="MultiButton4" >
+        <custom name="line1" type="java.lang.String" value="Direcci&#xf3;n" />
+        <custom name="line2" type="java.lang.String" value="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" />
+        <custom name="radioButton" type="java.lang.Boolean" value="true" />
+        <custom name="group" type="java.lang.String" value="radio" />
+      </component>
+      <component type="MultiButton" name="MultiButton1" cloudDestinationProperty="MultiButton1" >
+        <custom name="line1" type="java.lang.String" value="Tel&#xe9;fono" />
+        <custom name="line2" type="java.lang.String" value="+57 2 3845598" />
+        <custom name="radioButton" type="java.lang.Boolean" value="true" />
+        <custom name="group" type="java.lang.String" value="radio" />
+      </component>
+      <component type="MultiButton" name="MultiButton2" cloudDestinationProperty="MultiButton2" >
+        <custom name="line1" type="java.lang.String" value="P&#xe1;gina web" />
+        <custom name="line2" type="java.lang.String" value="http://www.consusalud.com" />
+        <custom name="radioButton" type="java.lang.Boolean" value="true" />
+        <custom name="group" type="java.lang.String" value="radio" />
+      </component>
+    </component>
+  </component>
+  <component type="MapComponent" name="MapComponent" cloudDestinationProperty="MapComponent" >
+    <layoutConstraint value="Center" />
+    <custom name="latitude" type="java.lang.Double" value="4970299.6573121" />
+  </component>
+</component>

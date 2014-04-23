@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component type="Form" name="Main" cloudDestinationProperty="ViewExams" scrollableX="false" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Listado de Ex&#xe1;menes de Laboratorio" cyclicFocus="true" >
+<component type="Form" name="Main" cloudDestinationProperty="ViewExams" scrollableX="false" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Seleccionar ex&#xe1;men" cyclicFocus="true" >
   <component type="MultiList" name="MultiList" cloudDestinationProperty="MultiList" hint="" >
     <layoutConstraint value="Center" />
     <mapItems>
       <stringItem key="selected" value="true" />
       <stringItem key="price" value="200 cuc" />
-      <stringItem key="freq" value="moneda" />
       <stringItem key="fullname" value="Entrada 1" />
+      <stringItem key="freq" value="moneda" />
     </mapItems>
     <custom name="name1" type="java.lang.String" value="fullname" />
     <custom name="name2" type="java.lang.String" value="price" />
@@ -29,7 +29,7 @@
     <component type="Button" name="BtnReset" cloudDestinationProperty="BtnReset" uiid="MultiButton" text="Recomenzar" icon="ic_input_delete.png" >
     </component>
   </component>
-  <component type="TextField" name="txtSearch" cloudBoundProperty="text" cloudDestinationProperty="txtSearch" text="" hint="&#xbf;Qu&#xe9; examenes desea hacerse?" >
+  <component type="TextField" name="txtSearch" cloudBoundProperty="text" cloudDestinationProperty="txtSearch" text="" hint="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" >
     <layoutConstraint value="North" />
   </component>
-<command name="Termin&#xe9;" id="1" action="FormExamsConfirm" backCommand="false" /></component>
+<command name="Termin&#xe9;" id="1" action="FormRequest" backCommand="false" /></component>

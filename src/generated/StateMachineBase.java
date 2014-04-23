@@ -33,13 +33,17 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container startApp(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
-        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
-        UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
-        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
-        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
+        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
+        UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
+        UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("MultiButton", com.codename1.components.MultiButton.class);
+        UIBuilder.registerCustomComponent("Tabs", com.codename1.ui.Tabs.class);
+        UIBuilder.registerCustomComponent("MapComponent", com.codename1.maps.MapComponent.class);
+        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         if(loadTheme) {
             if(res == null) {
                 try {
@@ -74,13 +78,17 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container createWidget(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
-        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
-        UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
-        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
-        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
+        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
+        UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
+        UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("MultiButton", com.codename1.components.MultiButton.class);
+        UIBuilder.registerCustomComponent("Tabs", com.codename1.ui.Tabs.class);
+        UIBuilder.registerCustomComponent("MapComponent", com.codename1.maps.MapComponent.class);
+        UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
         if(loadTheme) {
             if(res == null) {
                 try {
@@ -118,26 +126,14 @@ public abstract class StateMachineBase extends UIBuilder {
         this(res, null, loadTheme);
     }
 
-    public com.codename1.ui.Label findLogoHome(Component root) {
-        return (com.codename1.ui.Label)findByName("LogoHome", root);
+    public com.codename1.ui.Button findBtnReset(Component root) {
+        return (com.codename1.ui.Button)findByName("BtnReset", root);
     }
 
-    public com.codename1.ui.Label findLogoHome() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("LogoHome", Display.getInstance().getCurrent());
+    public com.codename1.ui.Button findBtnReset() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnReset", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("LogoHome", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Label findStatusExams(Component root) {
-        return (com.codename1.ui.Label)findByName("StatusExams", root);
-    }
-
-    public com.codename1.ui.Label findStatusExams() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("StatusExams", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("StatusExams", aboutToShowThisContainer);
+            cmp = (com.codename1.ui.Button)findByName("BtnReset", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -154,18 +150,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findFooterBar(Component root) {
-        return (com.codename1.ui.Container)findByName("FooterBar", root);
-    }
-
-    public com.codename1.ui.Container findFooterBar() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("FooterBar", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("FooterBar", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findContainer(Component root) {
         return (com.codename1.ui.Container)findByName("Container", root);
     }
@@ -178,50 +162,14 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Button findBtnSolicitar(Component root) {
-        return (com.codename1.ui.Button)findByName("btnSolicitar", root);
+    public com.codename1.ui.Container findHeaderAbout(Component root) {
+        return (com.codename1.ui.Container)findByName("HeaderAbout", root);
     }
 
-    public com.codename1.ui.Button findBtnSolicitar() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("btnSolicitar", Display.getInstance().getCurrent());
+    public com.codename1.ui.Container findHeaderAbout() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("HeaderAbout", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("btnSolicitar", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.list.MultiList findMultiList(Component root) {
-        return (com.codename1.ui.list.MultiList)findByName("MultiList", root);
-    }
-
-    public com.codename1.ui.list.MultiList findMultiList() {
-        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("MultiList", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.list.MultiList)findByName("MultiList", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Button findBtnAbout(Component root) {
-        return (com.codename1.ui.Button)findByName("btnAbout", root);
-    }
-
-    public com.codename1.ui.Button findBtnAbout() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("btnAbout", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("btnAbout", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Container findContainer1(Component root) {
-        return (com.codename1.ui.Container)findByName("Container1", root);
-    }
-
-    public com.codename1.ui.Container findContainer1() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container1", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("Container1", aboutToShowThisContainer);
+            cmp = (com.codename1.ui.Container)findByName("HeaderAbout", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -238,66 +186,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findHomeFooter(Component root) {
-        return (com.codename1.ui.Container)findByName("HomeFooter", root);
-    }
-
-    public com.codename1.ui.Container findHomeFooter() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("HomeFooter", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("HomeFooter", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Label findLabel(Component root) {
-        return (com.codename1.ui.Label)findByName("Label", root);
-    }
-
-    public com.codename1.ui.Label findLabel() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("Label", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("Label", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Container findContainer3(Component root) {
-        return (com.codename1.ui.Container)findByName("Container3", root);
-    }
-
-    public com.codename1.ui.Container findContainer3() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container3", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("Container3", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.components.InfiniteProgress findInfiniteProgress(Component root) {
-        return (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", root);
-    }
-
-    public com.codename1.components.InfiniteProgress findInfiniteProgress() {
-        com.codename1.components.InfiniteProgress cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Container findBodyHome(Component root) {
-        return (com.codename1.ui.Container)findByName("BodyHome", root);
-    }
-
-    public com.codename1.ui.Container findBodyHome() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("BodyHome", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("BodyHome", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Label findStatusMoney(Component root) {
         return (com.codename1.ui.Label)findByName("StatusMoney", root);
     }
@@ -306,18 +194,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("StatusMoney", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("StatusMoney", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Button findBtnReset(Component root) {
-        return (com.codename1.ui.Button)findByName("BtnReset", root);
-    }
-
-    public com.codename1.ui.Button findBtnReset() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnReset", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("BtnReset", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -334,9 +210,266 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.list.MultiList findMultiList(Component root) {
+        return (com.codename1.ui.list.MultiList)findByName("MultiList", root);
+    }
+
+    public com.codename1.ui.list.MultiList findMultiList() {
+        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("MultiList", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.list.MultiList)findByName("MultiList", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findStatusExams(Component root) {
+        return (com.codename1.ui.Label)findByName("StatusExams", root);
+    }
+
+    public com.codename1.ui.Label findStatusExams() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("StatusExams", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("StatusExams", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findContainer3(Component root) {
+        return (com.codename1.ui.Container)findByName("Container3", root);
+    }
+
+    public com.codename1.ui.Container findContainer3() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container3", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("Container3", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findContainer1(Component root) {
+        return (com.codename1.ui.Container)findByName("Container1", root);
+    }
+
+    public com.codename1.ui.Container findContainer1() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container1", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("Container1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.InfiniteProgress findInfiniteProgress(Component root) {
+        return (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", root);
+    }
+
+    public com.codename1.components.InfiniteProgress findInfiniteProgress() {
+        com.codename1.components.InfiniteProgress cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findLabel(Component root) {
+        return (com.codename1.ui.Label)findByName("Label", root);
+    }
+
+    public com.codename1.ui.Label findLabel() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("Label", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("Label", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.ComponentGroup findComponentGroup1(Component root) {
+        return (com.codename1.ui.ComponentGroup)findByName("ComponentGroup1", root);
+    }
+
+    public com.codename1.ui.ComponentGroup findComponentGroup1() {
+        com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup1", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.maps.MapComponent findMapComponent(Component root) {
+        return (com.codename1.maps.MapComponent)findByName("MapComponent", root);
+    }
+
+    public com.codename1.maps.MapComponent findMapComponent() {
+        com.codename1.maps.MapComponent cmp = (com.codename1.maps.MapComponent)findByName("MapComponent", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.maps.MapComponent)findByName("MapComponent", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.MultiButton findMultiButton2(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton2", root);
+    }
+
+    public com.codename1.components.MultiButton findMultiButton2() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton2", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton2", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Button findBtnAbout(Component root) {
+        return (com.codename1.ui.Button)findByName("btnAbout", root);
+    }
+
+    public com.codename1.ui.Button findBtnAbout() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("btnAbout", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("btnAbout", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.MultiButton findMultiButton3(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton3", root);
+    }
+
+    public com.codename1.components.MultiButton findMultiButton3() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton3", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton3", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findBodyHome(Component root) {
+        return (com.codename1.ui.Container)findByName("BodyHome", root);
+    }
+
+    public com.codename1.ui.Container findBodyHome() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("BodyHome", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("BodyHome", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.MultiButton findMultiButton1(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton1", root);
+    }
+
+    public com.codename1.components.MultiButton findMultiButton1() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton1", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.MultiButton findMultiButton4(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton4", root);
+    }
+
+    public com.codename1.components.MultiButton findMultiButton4() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton4", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton4", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findContainerExamsSelected(Component root) {
+        return (com.codename1.ui.Container)findByName("ContainerExamsSelected", root);
+    }
+
+    public com.codename1.ui.Container findContainerExamsSelected() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("ContainerExamsSelected", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("ContainerExamsSelected", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findHomeFooter(Component root) {
+        return (com.codename1.ui.Container)findByName("HomeFooter", root);
+    }
+
+    public com.codename1.ui.Container findHomeFooter() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("HomeFooter", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("HomeFooter", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findFooterBar(Component root) {
+        return (com.codename1.ui.Container)findByName("FooterBar", root);
+    }
+
+    public com.codename1.ui.Container findFooterBar() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("FooterBar", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("FooterBar", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findLogoHome(Component root) {
+        return (com.codename1.ui.Label)findByName("LogoHome", root);
+    }
+
+    public com.codename1.ui.Label findLogoHome() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("LogoHome", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("LogoHome", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.ComponentGroup findComponentGroup2(Component root) {
+        return (com.codename1.ui.ComponentGroup)findByName("ComponentGroup2", root);
+    }
+
+    public com.codename1.ui.ComponentGroup findComponentGroup2() {
+        com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup2", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup2", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Tabs findTabs1(Component root) {
+        return (com.codename1.ui.Tabs)findByName("Tabs1", root);
+    }
+
+    public com.codename1.ui.Tabs findTabs1() {
+        com.codename1.ui.Tabs cmp = (com.codename1.ui.Tabs)findByName("Tabs1", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Tabs)findByName("Tabs1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Button findBtnSolicitar(Component root) {
+        return (com.codename1.ui.Button)findByName("btnSolicitar", root);
+    }
+
+    public com.codename1.ui.Button findBtnSolicitar() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("btnSolicitar", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("btnSolicitar", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public static final int COMMAND_MainTermin = 1;
+    public static final int COMMAND_HomeViewAcercaDeNuestroLaboratorio = 2;
 
     protected boolean onMainTermin() {
+        return false;
+    }
+
+    protected boolean onHomeViewAcercaDeNuestroLaboratorio() {
         return false;
     }
 
@@ -349,6 +482,13 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
+            case COMMAND_HomeViewAcercaDeNuestroLaboratorio:
+                if(onHomeViewAcercaDeNuestroLaboratorio()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
         }
         if(ev.getComponent() != null) {
             handleComponentAction(ev.getComponent(), ev);
@@ -356,8 +496,8 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected void exitForm(Form f) {
-        if("FormExamsConfirm".equals(f.getName())) {
-            exitFormExamsConfirm(f);
+        if("MainSplash".equals(f.getName())) {
+            exitMainSplash(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -368,27 +508,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(f.getName())) {
-            exitMainSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(f.getName())) {
             exitHomeView(f);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(f.getName())) {
+            exitFormRequest(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(f.getName())) {
+            exitFormAboutConSuSalud(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitFormExamsConfirm(Form f) {
-    }
-
-
-    protected void exitMain(Form f) {
+            return;
     }
 
 
@@ -396,13 +534,25 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void exitMain(Form f) {
+    }
+
+
     protected void exitHomeView(Form f) {
+    }
+
+
+    protected void exitFormRequest(Form f) {
+    }
+
+
+    protected void exitFormAboutConSuSalud(Form f) {
     }
 
     protected void beforeShow(Form f) {
     aboutToShowThisContainer = f;
-        if("FormExamsConfirm".equals(f.getName())) {
-            beforeFormExamsConfirm(f);
+        if("MainSplash".equals(f.getName())) {
+            beforeMainSplash(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -413,27 +563,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(f.getName())) {
-            beforeMainSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(f.getName())) {
             beforeHomeView(f);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(f.getName())) {
+            beforeFormRequest(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(f.getName())) {
+            beforeFormAboutConSuSalud(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeFormExamsConfirm(Form f) {
-    }
-
-
-    protected void beforeMain(Form f) {
+            return;
     }
 
 
@@ -441,13 +589,25 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void beforeMain(Form f) {
+    }
+
+
     protected void beforeHomeView(Form f) {
+    }
+
+
+    protected void beforeFormRequest(Form f) {
+    }
+
+
+    protected void beforeFormAboutConSuSalud(Form f) {
     }
 
     protected void beforeShowContainer(Container c) {
         aboutToShowThisContainer = c;
-        if("FormExamsConfirm".equals(c.getName())) {
-            beforeContainerFormExamsConfirm(c);
+        if("MainSplash".equals(c.getName())) {
+            beforeContainerMainSplash(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -458,27 +618,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(c.getName())) {
-            beforeContainerMainSplash(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(c.getName())) {
             beforeContainerHomeView(c);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(c.getName())) {
+            beforeContainerFormRequest(c);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(c.getName())) {
+            beforeContainerFormAboutConSuSalud(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerFormExamsConfirm(Container c) {
-    }
-
-
-    protected void beforeContainerMain(Container c) {
+            return;
     }
 
 
@@ -486,12 +644,24 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void beforeContainerMain(Container c) {
+    }
+
+
     protected void beforeContainerHomeView(Container c) {
     }
 
+
+    protected void beforeContainerFormRequest(Container c) {
+    }
+
+
+    protected void beforeContainerFormAboutConSuSalud(Container c) {
+    }
+
     protected void postShow(Form f) {
-        if("FormExamsConfirm".equals(f.getName())) {
-            postFormExamsConfirm(f);
+        if("MainSplash".equals(f.getName())) {
+            postMainSplash(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -502,27 +672,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(f.getName())) {
-            postMainSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(f.getName())) {
             postHomeView(f);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(f.getName())) {
+            postFormRequest(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(f.getName())) {
+            postFormAboutConSuSalud(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postFormExamsConfirm(Form f) {
-    }
-
-
-    protected void postMain(Form f) {
+            return;
     }
 
 
@@ -530,12 +698,24 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void postMain(Form f) {
+    }
+
+
     protected void postHomeView(Form f) {
     }
 
+
+    protected void postFormRequest(Form f) {
+    }
+
+
+    protected void postFormAboutConSuSalud(Form f) {
+    }
+
     protected void postShowContainer(Container c) {
-        if("FormExamsConfirm".equals(c.getName())) {
-            postContainerFormExamsConfirm(c);
+        if("MainSplash".equals(c.getName())) {
+            postContainerMainSplash(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -546,27 +726,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(c.getName())) {
-            postContainerMainSplash(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(c.getName())) {
             postContainerHomeView(c);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(c.getName())) {
+            postContainerFormRequest(c);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(c.getName())) {
+            postContainerFormAboutConSuSalud(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerFormExamsConfirm(Container c) {
-    }
-
-
-    protected void postContainerMain(Container c) {
+            return;
     }
 
 
@@ -574,12 +752,24 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void postContainerMain(Container c) {
+    }
+
+
     protected void postContainerHomeView(Container c) {
     }
 
+
+    protected void postContainerFormRequest(Container c) {
+    }
+
+
+    protected void postContainerFormAboutConSuSalud(Container c) {
+    }
+
     protected void onCreateRoot(String rootName) {
-        if("FormExamsConfirm".equals(rootName)) {
-            onCreateFormExamsConfirm();
+        if("MainSplash".equals(rootName)) {
+            onCreateMainSplash();
             aboutToShowThisContainer = null;
             return;
         }
@@ -590,27 +780,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(rootName)) {
-            onCreateMainSplash();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(rootName)) {
             onCreateHomeView();
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(rootName)) {
+            onCreateFormRequest();
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(rootName)) {
+            onCreateFormAboutConSuSalud();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateFormExamsConfirm() {
-    }
-
-
-    protected void onCreateMain() {
+            return;
     }
 
 
@@ -618,13 +806,25 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void onCreateMain() {
+    }
+
+
     protected void onCreateHomeView() {
+    }
+
+
+    protected void onCreateFormRequest() {
+    }
+
+
+    protected void onCreateFormAboutConSuSalud() {
     }
 
     protected Hashtable getFormState(Form f) {
         Hashtable h = super.getFormState(f);
-        if("FormExamsConfirm".equals(f.getName())) {
-            getStateFormExamsConfirm(f, h);
+        if("MainSplash".equals(f.getName())) {
+            getStateMainSplash(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -635,27 +835,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("MainSplash".equals(f.getName())) {
-            getStateMainSplash(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
         if("HomeView".equals(f.getName())) {
             getStateHomeView(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
+        if("FormRequest".equals(f.getName())) {
+            getStateFormRequest(f, h);
+            aboutToShowThisContainer = null;
             return h;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(f.getName())) {
+            getStateFormAboutConSuSalud(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateFormExamsConfirm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMain(Form f, Hashtable h) {
+            return h;
     }
 
 
@@ -663,13 +861,25 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void getStateMain(Form f, Hashtable h) {
+    }
+
+
     protected void getStateHomeView(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFormRequest(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFormAboutConSuSalud(Form f, Hashtable h) {
     }
 
     protected void setFormState(Form f, Hashtable state) {
         super.setFormState(f, state);
-        if("FormExamsConfirm".equals(f.getName())) {
-            setStateFormExamsConfirm(f, state);
+        if("MainSplash".equals(f.getName())) {
+            setStateMainSplash(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -680,27 +890,25 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("MainSplash".equals(f.getName())) {
-            setStateMainSplash(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("HomeView".equals(f.getName())) {
             setStateHomeView(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
+        if("FormRequest".equals(f.getName())) {
+            setStateFormRequest(f, state);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("FormAboutConSuSalud".equals(f.getName())) {
+            setStateFormAboutConSuSalud(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateFormExamsConfirm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMain(Form f, Hashtable state) {
+            return;
     }
 
 
@@ -708,7 +916,19 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
+    protected void setStateMain(Form f, Hashtable state) {
+    }
+
+
     protected void setStateHomeView(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFormRequest(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFormAboutConSuSalud(Form f, Hashtable state) {
     }
 
     protected boolean setListModel(List cmp) {
@@ -756,6 +976,26 @@ public abstract class StateMachineBase extends UIBuilder {
                 return;
             }
         }
+        if(rootContainerName.equals("FormRequest")) {
+            if("MultiButton3".equals(c.getName())) {
+                onFormRequest_MultiButton3Action(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("FormAboutConSuSalud")) {
+            if("MultiButton4".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButton4Action(c, event);
+                return;
+            }
+            if("MultiButton1".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButton1Action(c, event);
+                return;
+            }
+            if("MultiButton2".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButton2Action(c, event);
+                return;
+            }
+        }
     }
 
       protected void onMain_MultiListAction(Component c, ActionEvent event) {
@@ -771,6 +1011,18 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onHomeView_BtnAboutAction(Component c, ActionEvent event) {
+      }
+
+      protected void onFormRequest_MultiButton3Action(Component c, ActionEvent event) {
+      }
+
+      protected void onFormAboutConSuSalud_MultiButton4Action(Component c, ActionEvent event) {
+      }
+
+      protected void onFormAboutConSuSalud_MultiButton1Action(Component c, ActionEvent event) {
+      }
+
+      protected void onFormAboutConSuSalud_MultiButton2Action(Component c, ActionEvent event) {
       }
 
 }
