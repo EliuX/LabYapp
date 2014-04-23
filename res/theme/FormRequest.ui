@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component type="Form" name="FormRequest" cloudDestinationProperty="FormRequest" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Env&#xed;o" >
-  <component type="Tabs" name="Tabs1" cloudDestinationProperty="Tabs1" >
+  <component type="Tabs" name="RequestTab" cloudDestinationProperty="Tabs1" >
     <layoutConstraint value="Center" />
     <custom name="titles" type="java.lang.String" array="true" dimensions="1" >
       <str>Ex&#xe1;menes solicitados</str>
       <str>Sus datos</str>
     </custom>
-    <component type="Container" name="ContainerExamsSelected" tabTitle="Ex&#xe1;menes solicitados" cloudDestinationProperty="Container" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
+    <custom name="icons" type="com.codename1.ui.Image" array="true" dimensions="1" >
+      <str>mini32x32.png</str>
+      <str/>
+    </custom>
+    <component type="Container" name="TabExamsSelected" tabTitle="Ex&#xe1;menes solicitados" cloudDestinationProperty="Container" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
       <component type="Label" name="Label" cloudDestinationProperty="Label" text="Ex&#xe1;men(es) que usted seleccion&#xf3;" >
         <layoutConstraint value="North" />
       </component>
+      <component type="List" name="ListSelection" cloudDestinationProperty="ListSelection" >
+        <layoutConstraint value="Center" />
+        <stringItem value="Item 1" />
+        <stringItem value="Item 2" />
+        <stringItem value="Item 3" />
+      </component>
     </component>
-    <component type="Container" name="Container3" tabTitle="Sus datos" cloudDestinationProperty="Container3" layout="BoxLayout" boxLayoutAxis="Y" >
+    <component type="Container" name="TabPersonalData" tabTitle="Sus datos" cloudDestinationProperty="Container3" layout="BoxLayout" boxLayoutAxis="Y" >
       <component type="Label" name="Label1" cloudDestinationProperty="Label1" uiid="Label" text="Introduzca los siguientes datos por favor" >
       </component>
       <component type="ComponentGroup" name="ComponentGroup2" cloudDestinationProperty="ComponentGroup2" >

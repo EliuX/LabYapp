@@ -11,6 +11,7 @@
     <ui name="Main" />
     <ui name="MainSplash" />
     <image name="mini32x32.png" type="multi"  />
+    <ui name="SelectionRenderer" />
     <image name="tests64x64.jpg" type="multi"  />
     <theme name="Theme">
         <val key="@includeNativeBool" value="true" />
