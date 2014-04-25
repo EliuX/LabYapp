@@ -7,12 +7,10 @@ package userclasses.common;
 
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
-import com.codename1.ui.Display;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 import userclasses.ExamsModel;
@@ -25,7 +23,7 @@ public class DataManager {
 
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
-    ArrayList<Hashtable<String, String>> selection;
+    Vector<Hashtable<String, String>> selection;
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
 
@@ -77,7 +75,7 @@ public class DataManager {
 
     synchronized public void resetSelection() {
         if (selection == null) {
-            selection = new ArrayList<Hashtable<String, String>>();
+            selection = new Vector<Hashtable<String, String>>();
         } else {  
             for (Hashtable<String, String> exam : selection) {
                 exam.put(ExamsModel.FIELD_SELECTION, Boolean.FALSE.toString());
@@ -85,13 +83,17 @@ public class DataManager {
             selection.clear();
         }
     }
+    
+    public boolean hasSelection(){
+        return (selection!=null && selection.size()>0);
+    }
 
     /**
      * Cantidad de examenes seleccionados
      *
      * @return cantidad de examenes seleccionados
      */
-    public ArrayList<Hashtable<String, String>> getSelection() {
+    public Vector<Hashtable<String, String>> getSelection() {
         return selection;
     }
 

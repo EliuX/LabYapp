@@ -4,6 +4,7 @@
 package userclasses;
 
 import com.codename1.components.SpanLabel;
+import com.codename1.maps.MapComponent;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -194,8 +195,12 @@ public class StateMachine extends StateMachineBase {
         }
     }
 
-    protected boolean onMainTermin(Command cmd) {
-        showForm("FormRequest", cmd);
+    @Override
+    protected boolean onMainSiguiente(Command cmd){
+        if(DataManager.getInstance().hasSelection()){  
+            return false;
+        }
+        Dialog.show("Error en la selección", "Por favor seleccione uno o más exámenes que desee hacerse en nuestro laboratorio", "Entendí", null);
         return true;
     }
 
@@ -205,5 +210,24 @@ public class StateMachine extends StateMachineBase {
        DataManager.getInstance().resetSelection();
        findMultiList().repaint();
        onDataSelectionChange();
+    } 
+
+    @Override
+    protected boolean initListModelListSelection(List cmp) {
+        Vector<Hashtable<String,String>> list = DataManager.getInstance().getSelection();
+        for (Hashtable<String, String> exam : list) { 
+            exam.put("LblFreq", "Frecuencia");
+            exam.put("LblPrice", "Precio no afiliado");
+        }
+        cmp.setModel(new DefaultListModel(DataManager.getInstance().getSelection()));
+        return true;
+    }
+
+    @Override
+    protected void postFormAboutConSuSalud(Form f) {
+       MapComponent map = findLabMap(f);
+       map.setPropertyValue("latitude", 3.415828);
+       map.setPropertyValue("longitude", -76.5278743);
+       map.setPropertyValue("zoom", 5);
     } 
 }

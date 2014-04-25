@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component type="Form" name="FormAboutConSuSalud" cloudDestinationProperty="FormAboutConSuSalud" scrollVisible="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" cyclicFocus="true" >
-  <component type="Container" name="HeaderAbout" cloudDestinationProperty="HeaderAbout" layout="BoxLayout" boxLayoutAxis="Y" >
-    <layoutConstraint value="North" />
-    <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="Consusalud Servicio Integral de Salud" verticalAlignment="0" >
+<component type="Form" name="FormAboutConSuSalud" cloudDestinationProperty="FormAboutConSuSalud" scrollVisible="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Acerca de nuestro Laboratorio" cyclicFocus="true" >
+  <component type="Tabs" name="Tabs" cloudDestinationProperty="Tabs" >
+    <layoutConstraint value="South" />
+    <custom name="titles" type="java.lang.String" array="true" dimensions="1" >
+      <str>&#xbf;Quienes somos?</str>
+      <str>&#xbf;Donde radicamos?</str>
+    </custom>
+    <component type="Container" name="TabMainAbout" tabTitle="&#xbf;Quienes somos?" cloudDestinationProperty="TabMainAbout" scrollableY="true" >
+      <component type="ComponentGroup" name="ComponentGroup1" cloudDestinationProperty="ComponentGroup1" scrollableY="true" >
+        <component type="MultiButton" name="MultiButton4" cloudDestinationProperty="MultiButton4" >
+          <custom name="line1" type="java.lang.String" value="Direcci&#xf3;n" />
+          <custom name="line2" type="java.lang.String" value="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" />
+          <custom name="radioButton" type="java.lang.Boolean" value="true" />
+          <custom name="group" type="java.lang.String" value="radio" />
+        </component>
+        <component type="MultiButton" name="MultiButton1" cloudDestinationProperty="MultiButton1" >
+          <custom name="line1" type="java.lang.String" value="Tel&#xe9;fono" />
+          <custom name="line2" type="java.lang.String" value="3845598; 316 4198404; 316 9675471" />
+          <custom name="radioButton" type="java.lang.Boolean" value="true" />
+          <custom name="group" type="java.lang.String" value="radio" />
+        </component>
+        <component type="MultiButton" name="MultiButton2" cloudDestinationProperty="MultiButton2" >
+          <custom name="line1" type="java.lang.String" value="P&#xe1;gina web" />
+          <custom name="line2" type="java.lang.String" value="http://www.consusalud.com" />
+          <custom name="radioButton" type="java.lang.Boolean" value="true" />
+          <custom name="group" type="java.lang.String" value="radio" />
+        </component>
+        <component type="SpanLabel" name="SpanLabel" cloudDestinationProperty="SpanLabel" >
+          <custom name="text" type="java.lang.String" value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
+        </component>
+      </component>
     </component>
-    <component type="ComponentGroup" name="ComponentGroup1" cloudDestinationProperty="ComponentGroup1" >
-      <component type="MultiButton" name="MultiButton4" cloudDestinationProperty="MultiButton4" >
-        <custom name="line1" type="java.lang.String" value="Direcci&#xf3;n" />
-        <custom name="line2" type="java.lang.String" value="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" />
-        <custom name="radioButton" type="java.lang.Boolean" value="true" />
-        <custom name="group" type="java.lang.String" value="radio" />
-      </component>
-      <component type="MultiButton" name="MultiButton1" cloudDestinationProperty="MultiButton1" >
-        <custom name="line1" type="java.lang.String" value="Tel&#xe9;fono" />
-        <custom name="line2" type="java.lang.String" value="+57 2 3845598" />
-        <custom name="radioButton" type="java.lang.Boolean" value="true" />
-        <custom name="group" type="java.lang.String" value="radio" />
-      </component>
-      <component type="MultiButton" name="MultiButton2" cloudDestinationProperty="MultiButton2" >
-        <custom name="line1" type="java.lang.String" value="P&#xe1;gina web" />
-        <custom name="line2" type="java.lang.String" value="http://www.consusalud.com" />
-        <custom name="radioButton" type="java.lang.Boolean" value="true" />
-        <custom name="group" type="java.lang.String" value="radio" />
+    <component type="Container" name="TabMapAbout" tabTitle="&#xbf;Donde radicamos?" cloudDestinationProperty="TabMapAbout" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
+      <component type="MapComponent" name="LabMap" cloudDestinationProperty="MapComponent" snapToGrid="true" flatten="false" >
+        <layoutConstraint value="North" />
+        <custom name="latitude" type="java.lang.Double" value="4970299.6573121" />
+        <custom name="zoom" type="java.lang.Integer" value="0" />
       </component>
     </component>
   </component>
-  <component type="MapComponent" name="MapComponent" cloudDestinationProperty="MapComponent" >
-    <layoutConstraint value="Center" />
-    <custom name="latitude" type="java.lang.Double" value="4970299.6573121" />
+  <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="Consusalud: Servicio Integral de Salud" verticalAlignment="0" >
+    <layoutConstraint value="North" />
   </component>
 </component>

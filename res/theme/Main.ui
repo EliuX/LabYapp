@@ -32,4 +32,4 @@
   <component type="TextField" name="txtSearch" cloudBoundProperty="text" cloudDestinationProperty="txtSearch" text="" hint="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" >
     <layoutConstraint value="North" />
   </component>
-<command name="Termin&#xe9;" id="1" action="FormRequest" backCommand="false" /></component>
+<command name="Siguiente" id="1" action="FormRequest" backCommand="false" /></component>
