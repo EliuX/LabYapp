@@ -3,7 +3,6 @@
  */
 package userclasses;
 
-import com.codename1.components.SpanLabel;
 import com.codename1.maps.MapComponent;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -20,8 +19,8 @@ import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
-import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Vector;
 import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
@@ -196,8 +195,8 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
-    protected boolean onMainSiguiente(Command cmd){
-        if(DataManager.getInstance().hasSelection()){  
+    protected boolean onMainSiguiente(Command cmd) {
+        if (DataManager.getInstance().hasSelection()) {
             return false;
         }
         Dialog.show("Error en la selección", "Por favor seleccione uno o más exámenes que desee hacerse en nuestro laboratorio", "Entendí", null);
@@ -205,17 +204,17 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
-    protected void onMain_BtnResetAction(Component c, ActionEvent event) { 
-       event.consume();
-       DataManager.getInstance().resetSelection();
-       findMultiList().repaint();
-       onDataSelectionChange();
-    } 
+    protected void onMain_BtnResetAction(Component c, ActionEvent event) {
+        event.consume();
+        DataManager.getInstance().resetSelection();
+        findMultiList().repaint();
+        onDataSelectionChange();
+    }
 
     @Override
     protected boolean initListModelListSelection(List cmp) {
-        Vector<Hashtable<String,String>> list = DataManager.getInstance().getSelection();
-        for (Hashtable<String, String> exam : list) { 
+        Vector<Hashtable<String, String>> list = DataManager.getInstance().getSelection();
+        for (Hashtable<String, String> exam : list) {
             exam.put("LblFreq", "Frecuencia");
             exam.put("LblPrice", "Precio no afiliado");
         }
@@ -225,9 +224,44 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void postFormAboutConSuSalud(Form f) {
-       MapComponent map = findLabMap(f);
-       map.setPropertyValue("latitude", 3.415828);
-       map.setPropertyValue("longitude", -76.5278743);
-       map.setPropertyValue("zoom", 5);
-    } 
+        MapComponent map = findLabMap(f);
+        map.setPropertyValue("latitude", 3.415828);
+        map.setPropertyValue("longitude", -76.5278743);
+        map.setPropertyValue("zoom", 5);
+    }
+
+    @Override
+    protected void onFormRequest_BtnEnviarAction(Component c, ActionEvent event) {
+        Hashtable<String, Object> params = new Hashtable<String, Object>();
+        String fullname = findUsername().getText();
+        String phone = findUserphone().getText();
+        String comment = findUsercomment().getText();
+        String errorsMsg = "";
+        //Introduzco los valores
+        params.put("fullname", fullname);
+        params.put("phone", findUserphone().getText());
+        params.put("afiliation", findUserafiliation().getBoundPropertyValue("selected"));
+        params.put("comment", comment);
+        params.put("exams", DataManager.getInstance().getSelection());
+        //Espero que todos los valores esten presentes
+        for (Map.Entry<String, Object> param : params.entrySet()) {
+            if (DataManager.getInstance().isEmpty(param.getValue())) {
+                errorsMsg += "Faltan datos por especificar\n";
+                break;
+            }
+        }
+        
+        if (fullname.lastIndexOf(" ")<3){
+            errorsMsg += "Por favor introduzca su nombre completo correctamente\n";
+        }
+        if (!findUserphone().validChar(phone)) {
+            errorsMsg += "El teléfono no tiene un valor válido\n";
+        }
+        if (DataManager.getInstance().isEmpty(errorsMsg)) {
+            DataManager.getInstance().addSuccellFullRequest(params);
+            //TODO Enviar
+        } else {
+            Dialog.show("Parámetros no válidos\n", errorsMsg, "Entiendo", null);
+        }
+    }
 }

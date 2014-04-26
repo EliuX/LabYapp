@@ -24,10 +24,12 @@ public class DataManager {
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
     Vector<Hashtable<String, String>> selection;
+    Vector<Hashtable<String, Object>> requests;
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
 
     private DataManager() {
+        requests = new Vector<Hashtable<String, Object>>();
         resetSelection();
     }
 
@@ -76,16 +78,16 @@ public class DataManager {
     synchronized public void resetSelection() {
         if (selection == null) {
             selection = new Vector<Hashtable<String, String>>();
-        } else {  
+        } else {
             for (Hashtable<String, String> exam : selection) {
                 exam.put(ExamsModel.FIELD_SELECTION, Boolean.FALSE.toString());
-            } 
+            }
             selection.clear();
         }
     }
-    
-    public boolean hasSelection(){
-        return (selection!=null && selection.size()>0);
+
+    public boolean hasSelection() {
+        return (selection != null && selection.size() > 0);
     }
 
     /**
@@ -104,5 +106,13 @@ public class DataManager {
             count_money += Float.valueOf(price.substring(1));
         }
         return count_money;
+    } 
+    
+    public void addSuccellFullRequest(Hashtable<String, Object> request){
+        requests.add(request);
+    }
+    
+    public boolean isEmpty(Object value){
+        return value.toString().length()<1;
     }
 }
