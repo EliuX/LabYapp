@@ -24,12 +24,12 @@ public class DataManager {
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
     Vector<Hashtable<String, String>> selection;
-    Vector<Hashtable<String, Object>> requests;
+    Hashtable<String, Object> last_request;
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
 
     private DataManager() {
-        requests = new Vector<Hashtable<String, Object>>();
+        last_request = new Hashtable<String, Object>();
         resetSelection();
     }
 
@@ -108,8 +108,12 @@ public class DataManager {
         return count_money;
     } 
     
-    public void addSuccellFullRequest(Hashtable<String, Object> request){
-        requests.add(request);
+    public void setSuccellFullRequest(Hashtable<String, Object> request){
+        last_request = request;
+    }
+    
+    public Hashtable<String, Object> getSuccellFullRequest(){
+        return last_request;
     }
     
     public boolean isEmpty(Object value){

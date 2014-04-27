@@ -4,6 +4,7 @@
 package userclasses;
 
 import com.codename1.maps.MapComponent;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -232,6 +233,19 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onFormRequest_BtnEnviarAction(Component c, ActionEvent event) {
+        GatherData();
+        Hashtable<String, Object> request = DataManager.getInstance().getSuccellFullRequest();
+        if (request.isEmpty()) {
+            return;
+        }
+        String body = "Nombre del solicitante:" + Utils.TABLINE + request.get("fullname") + Utils.NEWLINE
+                + "Teléfono del contacto:" + Utils.TABLINE + request.get("phone") + Utils.NEWLINE
+                + (request.get("afiliation").equals(Boolean.FALSE) ? "No quiere" : "Quiere") + " afiliarse" + Utils.NEWLINE
+                + (DataManager.getInstance().isEmpty(request.get("comment")) ? "" : ("Comenta: " + Utils.NEWLINE + request.get("comment")));
+        Display.getInstance().sendMessage(new String[]{"consusaludempresarial@gmail.com"}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
+    }
+
+    public void GatherData() {
         Hashtable<String, Object> params = new Hashtable<String, Object>();
         String fullname = findUsername().getText();
         String phone = findUserphone().getText();
@@ -243,22 +257,19 @@ public class StateMachine extends StateMachineBase {
         params.put("afiliation", findUserafiliation().getBoundPropertyValue("selected"));
         params.put("comment", comment);
         params.put("exams", DataManager.getInstance().getSelection());
-        //Espero que todos los valores esten presentes
-        for (Map.Entry<String, Object> param : params.entrySet()) {
-            if (DataManager.getInstance().isEmpty(param.getValue())) {
-                errorsMsg += "Faltan datos por especificar\n";
-                break;
-            }
+        //Espero que todos los valores esten presentes 
+        if (DataManager.getInstance().isEmpty(params.get("fullname")) || DataManager.getInstance().isEmpty(params.get("phone"))) {
+            errorsMsg += "Faltan datos por especificar\n";
         }
-        
-        if (fullname.lastIndexOf(" ")<3){
+
+        if (fullname.lastIndexOf(" ") < 3) {
             errorsMsg += "Por favor introduzca su nombre completo correctamente\n";
         }
         if (!findUserphone().validChar(phone)) {
             errorsMsg += "El teléfono no tiene un valor válido\n";
         }
         if (DataManager.getInstance().isEmpty(errorsMsg)) {
-            DataManager.getInstance().addSuccellFullRequest(params);
+            DataManager.getInstance().setSuccellFullRequest(params);
             //TODO Enviar
         } else {
             Dialog.show("Parámetros no válidos\n", errorsMsg, "Entiendo", null);
