@@ -20,8 +20,7 @@ import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.Hashtable; 
 import java.util.Vector;
 import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
@@ -242,6 +241,12 @@ public class StateMachine extends StateMachineBase {
                 + "Teléfono del contacto:" + Utils.TABLINE + request.get("phone") + Utils.NEWLINE
                 + (request.get("afiliation").equals(Boolean.FALSE) ? "No quiere" : "Quiere") + " afiliarse" + Utils.NEWLINE
                 + (DataManager.getInstance().isEmpty(request.get("comment")) ? "" : ("Comenta: " + Utils.NEWLINE + request.get("comment")));
+        //Adjunto los servicios que desea
+        Vector<Hashtable<String, String>> list = (Vector<Hashtable<String, String>>) request.get("exams");
+        body += Utils.NEWSEGMENT + "Prueba(s) seleccionada(s)" + Utils.NEWLINE;
+        for (Hashtable<String, String> exam : list) {
+            body += exam.get(ExamsModel.FIELD_FULLNAME) + Utils.NEWLINE;
+        }
         Display.getInstance().sendMessage(new String[]{"consusaludempresarial@gmail.com"}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
     }
 
@@ -259,20 +264,19 @@ public class StateMachine extends StateMachineBase {
         params.put("exams", DataManager.getInstance().getSelection());
         //Espero que todos los valores esten presentes 
         if (DataManager.getInstance().isEmpty(params.get("fullname")) || DataManager.getInstance().isEmpty(params.get("phone"))) {
-            errorsMsg += "Faltan datos por especificar\n";
+            errorsMsg += "Faltan datos por especificar" + Utils.NEWLINE;
         }
 
         if (fullname.lastIndexOf(" ") < 3) {
-            errorsMsg += "Por favor introduzca su nombre completo correctamente\n";
+            errorsMsg += "Por favor introduzca su nombre completo correctamente." + Utils.NEWLINE;
         }
         if (!findUserphone().validChar(phone)) {
-            errorsMsg += "El teléfono no tiene un valor válido\n";
+            errorsMsg += "El teléfono no tiene un valor válido." + Utils.NEWLINE;
         }
         if (DataManager.getInstance().isEmpty(errorsMsg)) {
-            DataManager.getInstance().setSuccellFullRequest(params);
-            //TODO Enviar
+            DataManager.getInstance().setSuccellFullRequest(params);    //TODO Enviar
         } else {
-            Dialog.show("Parámetros no válidos\n", errorsMsg, "Entiendo", null);
+            Dialog.show("Parámetros no válidos", errorsMsg, "Entiendo", null);
         }
     }
 }

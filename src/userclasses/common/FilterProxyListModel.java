@@ -16,9 +16,9 @@ import java.util.Vector;
  */
 public abstract class FilterProxyListModel implements ListModel, DataChangedListener {
 
-    private final ListModel underlying;
-    private Vector filter;
-    private final Vector listeners = new Vector();
+    protected final ListModel underlying;
+    protected Vector filter;
+    protected final Vector listeners = new Vector();
 
     public FilterProxyListModel(ListModel underlying) {
         this.underlying = underlying;
@@ -45,15 +45,16 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
     public void filter(String str) {
         filter = new Vector();
         for (int iter = 0; iter < underlying.getSize(); iter++) {
-            if (check(ItemtoString(underlying.getItemAt(iter)), str.toUpperCase())) {
+            if (check(ItemtoString(underlying.getItemAt(iter)), str)) {
                 filter.addElement(new Integer(iter));
             }
         }
         dataChanged(DataChangedListener.CHANGED, -1);
     }
-    
+
     /**
      * Verifica que un objeto matchea el filtro
+     *
      * @param o Objeto del modelo a comprobar
      * @param str Cadena que se busca
      * @return TRUE | FALSE Si matchea o no
