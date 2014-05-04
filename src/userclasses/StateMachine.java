@@ -20,7 +20,7 @@ import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
 import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
-import java.util.Hashtable; 
+import java.util.Hashtable;
 import java.util.Vector;
 import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
@@ -54,7 +54,7 @@ public class StateMachine extends StateMachineBase {
      */
     @Override
     protected void initVars(Resources res) {
-        Vector vData = DataManager.getInstance(res).getData("exams.json");
+        Vector vData = DataManager.getInstance(res).getData(ExamsModel.EXAMS_FILE);
         examsModel = new DefaultListModel(vData);
         proxyModel = new ExamsModel(examsModel);
     }
@@ -147,10 +147,14 @@ public class StateMachine extends StateMachineBase {
     public Boolean ShowDataExam(Hashtable<String, String> field) {
         String txt = field.get(ExamsModel.FIELD_FULLNAME)
                 + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
-                + field.get(ExamsModel.FIELD_PRICE) + " " + Utils.modena_str;
+                + Utils.print_money(field.get(ExamsModel.FIELD_PRICE));
+        String price_afiliado = field.get(ExamsModel.FIELD_PRICE_AFILIATED);
+        if (!DataManager.isEmpty(price_afiliado)) {
+            txt = txt.concat(Constants.NEWLINE + "Precio de afiliados:" + Constants.INDENT + Utils.print_money(price_afiliado));
+        }
         String freq = field.get(ExamsModel.FIELD_FREQUENCY);
-        if (freq != null && freq.trim().length() > 0) {
-            txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + field.get(ExamsModel.FIELD_FREQUENCY));
+        if (!DataManager.isEmpty(freq)) {
+            txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + freq);
         }
         return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Sí", "No");
     }
@@ -240,14 +244,15 @@ public class StateMachine extends StateMachineBase {
         String body = "Nombre del solicitante:" + Utils.TABLINE + request.get("fullname") + Utils.NEWLINE
                 + "Teléfono del contacto:" + Utils.TABLINE + request.get("phone") + Utils.NEWLINE
                 + (request.get("afiliation").equals(Boolean.FALSE) ? "No quiere" : "Quiere") + " afiliarse" + Utils.NEWLINE
-                + (DataManager.getInstance().isEmpty(request.get("comment")) ? "" : ("Comenta: " + Utils.NEWLINE + request.get("comment")));
+                + (DataManager.isEmpty(request.get("comment")) ? "" : ("Comenta: " + Utils.NEWLINE + request.get("comment")));
         //Adjunto los servicios que desea
         Vector<Hashtable<String, String>> list = (Vector<Hashtable<String, String>>) request.get("exams");
         body += Utils.NEWSEGMENT + "Prueba(s) seleccionada(s)" + Utils.NEWLINE;
         for (Hashtable<String, String> exam : list) {
-            body += exam.get(ExamsModel.FIELD_FULLNAME) + Utils.NEWLINE;
+            body += "-" + exam.get(ExamsModel.FIELD_FULLNAME) + Utils.NEWLINE;
         }
-        Display.getInstance().sendMessage(new String[]{"consusaludempresarial@gmail.com"}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
+        body += Utils.NEWSEGMENT + "Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney()));
+        Display.getInstance().sendMessage(new String[]{Utils.ENTERPRISE_MAIL}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
     }
 
     public void GatherData() {
@@ -263,7 +268,7 @@ public class StateMachine extends StateMachineBase {
         params.put("comment", comment);
         params.put("exams", DataManager.getInstance().getSelection());
         //Espero que todos los valores esten presentes 
-        if (DataManager.getInstance().isEmpty(params.get("fullname")) || DataManager.getInstance().isEmpty(params.get("phone"))) {
+        if (DataManager.isEmpty(params.get("fullname")) || DataManager.isEmpty(params.get("phone"))) {
             errorsMsg += "Faltan datos por especificar" + Utils.NEWLINE;
         }
 
@@ -273,10 +278,15 @@ public class StateMachine extends StateMachineBase {
         if (!findUserphone().validChar(phone)) {
             errorsMsg += "El teléfono no tiene un valor válido." + Utils.NEWLINE;
         }
-        if (DataManager.getInstance().isEmpty(errorsMsg)) {
+        if (DataManager.isEmpty(errorsMsg)) {
             DataManager.getInstance().setSuccellFullRequest(params);    //TODO Enviar
         } else {
             Dialog.show("Parámetros no válidos", errorsMsg, "Entiendo", null);
         }
+    }
+
+    @Override
+    protected void postFormRequest(Form f) {
+        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())));
     }
 }

@@ -116,7 +116,27 @@ public class DataManager {
         return last_request;
     }
     
-    public boolean isEmpty(Object value){
-        return value.toString().length()<1;
+
+    /**
+     * Elimina los prefijos, acentos y dobles espacios de la cadena que se
+     * especifica
+     *
+     * @param nombre
+     * @return La cadena sin caracteres latinos
+     */
+    public static String selector(String nombre) {
+        String xnombre = nombre.toUpperCase();
+        xnombre = xnombre.replace('Ñ', 'N');
+        xnombre = xnombre.replace('Á', 'A');
+        xnombre = xnombre.replace('É', 'E');
+        xnombre = xnombre.replace('Í', 'I');
+        xnombre = xnombre.replace('Ó', 'O');
+        xnombre = xnombre.replace('Ú', 'U');
+        return xnombre;
+    }
+    
+   public static boolean isEmpty(Object value){
+        String val = String.valueOf(value);
+        return val==null || val.length()<1;
     }
 }

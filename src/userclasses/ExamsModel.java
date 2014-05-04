@@ -7,6 +7,7 @@ package userclasses;
 
 import com.codename1.ui.list.ListModel;
 import java.util.Hashtable;
+import userclasses.common.DataManager;
 import userclasses.common.FilterProxyListModel;
 
 /**
@@ -17,9 +18,11 @@ import userclasses.common.FilterProxyListModel;
  * Model for the exams list!
  */
 public class ExamsModel extends FilterProxyListModel {
-
+    //Data file's name  
+    static public String EXAMS_FILE = "exams.json";
     //Fields´ constants
     static public String FIELD_PRICE = "price";
+    static public String FIELD_PRICE_AFILIATED = "price2";
     static public String FIELD_FULLNAME = "fullname";
     static public String FIELD_FULLNAME_CACHE = "fullname_cache";
     static public String FIELD_FREQUENCY = "freq";
@@ -27,7 +30,7 @@ public class ExamsModel extends FilterProxyListModel {
     boolean normalized = false;
 
     public ExamsModel(ListModel model) {
-        super(model);
+        super(model);   
     }
 
     @Override
@@ -36,7 +39,7 @@ public class ExamsModel extends FilterProxyListModel {
         if (normalized) {
             return exam.get(FIELD_FULLNAME_CACHE);
         } else {    //Sino lo calculo y cacheo la primera vez
-            String caption = Utils.selector(exam.get(FIELD_FULLNAME));
+            String caption = DataManager.selector(exam.get(FIELD_FULLNAME));
             exam.put(FIELD_FULLNAME_CACHE, caption);
             return caption;
         }
@@ -48,7 +51,7 @@ public class ExamsModel extends FilterProxyListModel {
 
     @Override
     public void filter(String str) {
-        super.filter(Utils.selector(str));
+        super.filter(DataManager.selector(str));
         normalized = true;  //Despues todo esta cacheado
     }
 }
