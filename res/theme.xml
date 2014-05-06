@@ -15,6 +15,17 @@
     <image name="tests64x64.jpg" type="multi"  />
     <theme name="Theme">
         <val key="@includeNativeBool" value="true" />
+        <val key="BigBtn.bgColor" value="6a9b00" />
+        <val key="BigBtn.derive" value="HomeMainButton" />
+        <font key="BigBtn.font" type="system" face="0" style="0" size="0" />
+        <val key="BigBtn.margin" value="0,0,0,0" />
+        <val key="BigBtn.press#bgColor" value="8CCD00" />
+        <val key="BigBtn.press#derive" value="HomeMainButton.press" />
+        <val key="BigBtn.press#margin" value="0,0,0,0" />
+        <val key="BigBtn.sel#bgColor" value="8CCD00" />
+        <val key="BigBtn.sel#derive" value="HomeMainButton.sel" />
+        <val key="BigBtn.sel#margin" value="0,0,0,0" />
+        <val key="BigBtn.textDecoration" value="32" />
         <val key="BtnConsusalud.align" value="4" />
         <val key="BtnConsusalud.bgColor" value="e5bd22" />
         <border key="BtnConsusalud.border" type="rounded" thickness="0" arcW="1" arcH="1" color="16763904" />
@@ -24,6 +35,9 @@
         <val key="BtnConsusalud.padding" value="5,10,5,5" />
         <val key="BtnConsusalud.textDecoration" value="16" />
         <val key="BtnConsusalud.transparency" value="250" />
+        <val key="GeneralCmpBlue.bgColor" value="46C5EA" />
+        <val key="GeneralCmpBlue.fgColor" value="ffffff" />
+        <val key="GeneralCmpBlue.transparency" value="255" />
         <val key="GreenLabel.bgColor" value="6a9b00" />
         <val key="GreenLabel.fgColor" value="e4faef" />
         <font key="GreenLabel.font" type="system" face="64" style="1" size="0" />
@@ -36,9 +50,9 @@
         <val key="HomeMainButton.fgColor" value="ffffff" />
         <val key="HomeMainButton.margin" value="0,20,10,10" />
         <val key="HomeMainButton.padding" value="15,15,10,10" />
-        <val key="HomeMainButton.press#bgColor" value="E5BD22" />
+        <val key="HomeMainButton.press#bgColor" value="46C5EA" />
         <val key="HomeMainButton.press#derive" value="HomeMainButton" />
-        <val key="HomeMainButton.press#fgColor" value="3333" />
+        <val key="HomeMainButton.press#fgColor" value="2D3E50" />
         <val key="HomeMainButton.sel#bgColor" value="E5BD22" />
         <val key="HomeMainButton.sel#derive" value="HomeMainButton" />
         <val key="HomeMainButton.sel#fgColor" value="3333" />
@@ -54,6 +68,9 @@
         <val key="StatusMoneyFooter.derive" value="GreenLabel" />
         <val key="StatusMoneyFooter.padding" value="10,10,10,10" />
         <val key="StatusMoneyFooter.transparency" value="200" />
+        <val key="Title.bgColor" value="46C5EA" />
+        <val key="Title.derive" value="GeneralCmpBlue" />
+        <val key="Title.fgColor" value="ffffff" />
     </theme>
     <image name="tube-logo.png" type="multi"  />
 </resource>

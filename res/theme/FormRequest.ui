@@ -5,7 +5,7 @@
     <layoutConstraint value="Center" />
     <custom name="titles" type="java.lang.String" array="true" dimensions="1" >
       <str>Sus datos</str>
-      <str>Examenes seleccionados</str>
+      <str>Selecci&#xf3;n</str>
     </custom>
     <custom name="icons" type="com.codename1.ui.Image" array="true" dimensions="1" >
       <str/>
@@ -16,7 +16,7 @@
       <str>mini32x32.png</str>
     </custom>
     <component type="Container" name="TabPersonalData" tabTitle="Sus datos" cloudDestinationProperty="Container3" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
-      <component type="Label" name="Label1" cloudDestinationProperty="Label1" uiid="Label" text="Introduzca los siguientes datos por favor. Al terminar presione enviar" >
+      <component type="Label" name="Label1" cloudDestinationProperty="Label1" uiid="Label" text="Presione &quot;Enviar datos&quot; al terminar" >
         <layoutConstraint value="North" />
       </component>
       <component type="ComponentGroup" name="UserData" cloudDestinationProperty="ComponentGroup2" scrollableY="true" >
@@ -29,21 +29,18 @@
         </component>
         <component type="CheckBox" name="userafiliation" cloudDestinationProperty="userafiliation" text="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" >
         </component>
-        <component type="TextArea" name="usercomment" cloudBoundProperty="text" cloudDestinationProperty="usercomment" text="" maxSize="1024" hint="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" rows="4" >
+        <component type="TextArea" name="usercomment" cloudBoundProperty="text" cloudDestinationProperty="usercomment" text="" maxSize="1024" hint="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" rows="5" >
         </component>
       </component>
-      <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" text="Enviar datos" >
-        <layoutConstraint value="South" />
-      </component>
     </component>
-    <component type="Container" name="TabExamsSelected" tabTitle="Examenes seleccionados" cloudDestinationProperty="TabExamsSelected" layout="BoxLayout" boxLayoutAxis="Y" >
+    <component type="Container" name="TabExamsSelected" tabTitle="Selecci&#xf3;n" cloudDestinationProperty="TabExamsSelected" layout="BoxLayout" boxLayoutAxis="Y" >
       <component type="Label" name="Label" cloudDestinationProperty="Label" text="Ex&#xe1;menes que usted seleccion&#xf3;" >
       </component>
       <component type="MultiList" name="ListSelection" cloudDestinationProperty="MultiList" hint="" >
         <mapItems>
-          <stringItem key="price" value="200 cuc" />
           <stringItem key="selected" value="true" />
           <stringItem key="freq" value="moneda" />
+          <stringItem key="price" value="200 cuc" />
           <stringItem key="fullname" value="Entrada 1" />
         </mapItems>
         <custom name="name1" type="java.lang.String" value="fullname" />
@@ -57,6 +54,15 @@
         <custom name="horizontalLayout" type="java.lang.Boolean" value="true" />
         <custom name="checkBox" type="java.lang.Boolean" value="false" />
       </component>
+      <component type="Label" name="TotalRequestCost" cloudDestinationProperty="TotalRequestCost" uiid="StatusExamFooter" snapToGrid="true" text="0" verticalAlignment="0" >
+      </component>
+    </component>
+  </component>
+  <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
+    <layoutConstraint value="South" />
+    <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" uiid="BigBtn" flatten="false" text="Enviar datos" >
+      <layoutConstraint value="South" />
+      <custom name="maskName" type="java.lang.String" value="" />
     </component>
   </component>
 </component>
