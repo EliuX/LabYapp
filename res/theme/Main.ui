@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component type="Form" name="Main" cloudDestinationProperty="ViewExams" scrollableX="false" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Seleccionar ex&#xe1;men" cyclicFocus="true" >
+<component type="Form" name="Main" cloudDestinationProperty="ViewExams" snapToGrid="false" scrollableX="false" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Seleccionar ex&#xe1;men" cyclicFocus="true" >
   <component type="MultiList" name="MultiList" cloudDestinationProperty="MultiList" hint="" >
     <layoutConstraint value="Center" />
     <mapItems>
-      <stringItem key="selected" value="true" />
-      <stringItem key="freq" value="moneda" />
-      <stringItem key="price" value="200 cuc" />
       <stringItem key="fullname" value="Entrada 1" />
+      <stringItem key="selected" value="true" />
+      <stringItem key="price" value="200 cuc" />
+      <stringItem key="freq" value="moneda" />
     </mapItems>
     <custom name="name1" type="java.lang.String" value="fullname" />
     <custom name="name2" type="java.lang.String" value="price" />

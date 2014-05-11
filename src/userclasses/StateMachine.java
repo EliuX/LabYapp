@@ -41,6 +41,7 @@ public class StateMachine extends StateMachineBase {
     Label lblstatus, lblmoney;
     Container footerBar;
     private String Hashtable;
+    private boolean isLoaded = false;
 
     public StateMachine(String resFile) {
         super(resFile);
@@ -170,15 +171,20 @@ public class StateMachine extends StateMachineBase {
      * sistema
      */
     protected void onDataSelectionChange() {
-        Label lblExams = findStatusExams();
-        Label lblMoney = findStatusMoney();
-        int count_exams = DataManager.getInstance().getSelection().size();
-        if (lblExams != null) {
-            lblExams.setText(String.valueOf(count_exams));
-        }
-        if (lblMoney != null) {
-            lblMoney.setText("$" + DataManager.getInstance().getCountOfMoney());
-        }
+        Display.getInstance().callSerially(new Runnable() {
+            public void run() {
+                Label lblExams = findStatusExams();
+                Label lblMoney = findStatusMoney();
+                int count_exams = DataManager.getInstance().getSelection().size();
+                if (lblExams != null) {
+                    lblExams.setText(String.valueOf(count_exams));
+                }
+                if (lblMoney != null) {
+                    lblMoney.setText("$" + DataManager.getInstance().getCountOfMoney());
+                }
+                toogleFooter(count_exams > 0); 
+            }
+        });
     }
 
     /**
@@ -187,15 +193,16 @@ public class StateMachine extends StateMachineBase {
      * @param visible If it's visible
      */
     protected void toogleFooter(boolean visible) {
-        Container footer = findFooterBar();
-        if (footer != null) {
-            footer.setVisible(true);
-            footer.setVisible(visible);
-            footer.repaint();
-            if (!visible) {
-                footer.getParent().repaint();
-            }
+        final Container footer = findFooterBar();
+        Container father = footer.getParent();
+        if (visible && !footer.isVisible()) {
+            footer.setPreferredSize(null);
+            father.animateLayout(800);
+        } else if (!visible && footer.isVisible()) {
+            footer.setPreferredH(0);
+            father.animateLayoutAndWait(800);
         }
+        footer.setVisible(visible);
     }
 
     @Override

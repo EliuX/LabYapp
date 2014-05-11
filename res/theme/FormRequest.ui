@@ -38,10 +38,10 @@
       </component>
       <component type="MultiList" name="ListSelection" cloudDestinationProperty="MultiList" hint="" >
         <mapItems>
-          <stringItem key="selected" value="true" />
-          <stringItem key="freq" value="moneda" />
-          <stringItem key="price" value="200 cuc" />
           <stringItem key="fullname" value="Entrada 1" />
+          <stringItem key="selected" value="true" />
+          <stringItem key="price" value="200 cuc" />
+          <stringItem key="freq" value="moneda" />
         </mapItems>
         <custom name="name1" type="java.lang.String" value="fullname" />
         <custom name="name2" type="java.lang.String" value="price" />
