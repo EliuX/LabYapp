@@ -11,7 +11,7 @@ package userclasses;
  */
 public class Utils {
 
-    static public String modena_str = "USD";
+    static public String modena_str = "pesos";
     //Datos de la empresa
     static public String ENTERPRISE_MAIL = "consusaludempresarial@gmail.com";
     //Listado de Examenes
@@ -23,6 +23,6 @@ public class Utils {
     static public String NEWSEGMENT = NEWLINE + "----------------------------------------" + NEWLINE;
 
     static String print_money(String value) {
-       return value + " " + modena_str;
+       return value;
     }
 }

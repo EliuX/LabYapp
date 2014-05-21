@@ -41,7 +41,7 @@
       </component>
     </component>
   </component>
-  <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="Consusalud: Servicio Integral de Salud" verticalAlignment="0" >
+  <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="BtnConsusalud" text="" icon="consusalud-bar.png" verticalAlignment="0" >
     <layoutConstraint value="North" />
   </component>
 </component>

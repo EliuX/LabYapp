@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="6" useXmlUI="false">
+    <image name="consusalud-bar.png"  />
     <image name="exam.png" type="multi"  />
     <data name="exams.json" />
     <ui name="FormAboutConSuSalud" />
@@ -27,7 +28,7 @@
         <val key="BigBtn.sel#margin" value="0,0,0,0" />
         <val key="BigBtn.textDecoration" value="32" />
         <val key="BtnConsusalud.align" value="4" />
-        <val key="BtnConsusalud.bgColor" value="e5bd22" />
+        <val key="BtnConsusalud.bgColor" value="ffffcc" />
         <border key="BtnConsusalud.border" type="rounded" thickness="0" arcW="1" arcH="1" color="16763904" />
         <val key="BtnConsusalud.fgColor" value="333333" />
         <font key="BtnConsusalud.font" type="system" face="32" style="0" size="16" />
@@ -35,7 +36,7 @@
         <val key="BtnConsusalud.padding" value="5,10,5,5" />
         <val key="BtnConsusalud.textDecoration" value="16" />
         <val key="BtnConsusalud.transparency" value="250" />
-        <val key="GeneralCmpBlue.bgColor" value="46C5EA" />
+        <val key="GeneralCmpBlue.bgColor" value="00AEEF" />
         <val key="GeneralCmpBlue.fgColor" value="ffffff" />
         <val key="GeneralCmpBlue.transparency" value="255" />
         <val key="GreenLabel.bgColor" value="6a9b00" />
@@ -46,18 +47,28 @@
         <val key="GreenLabel.sel#derive" value="StatusMoneyFooter" />
         <val key="GreenLabel.transparency" value="250" />
         <val key="HomeMainButton.align" value="4" />
-        <val key="HomeMainButton.bgColor" value="2D3E50" />
+        <val key="HomeMainButton.bgColor" value="002561" />
         <val key="HomeMainButton.fgColor" value="ffffff" />
         <val key="HomeMainButton.margin" value="0,20,10,10" />
         <val key="HomeMainButton.padding" value="15,15,10,10" />
         <val key="HomeMainButton.press#bgColor" value="46C5EA" />
         <val key="HomeMainButton.press#derive" value="HomeMainButton" />
-        <val key="HomeMainButton.press#fgColor" value="2D3E50" />
+        <val key="HomeMainButton.press#fgColor" value="002561" />
         <val key="HomeMainButton.sel#bgColor" value="E5BD22" />
         <val key="HomeMainButton.sel#derive" value="HomeMainButton" />
         <val key="HomeMainButton.sel#fgColor" value="3333" />
         <val key="HomeMainButton.textDecoration" value="0" />
         <val key="HomeMainButton.transparency" value="255" />
+        <val key="HomeMainButtonLight.bgColor" value="0F6D39" />
+        <val key="HomeMainButtonLight.derive" value="HomeMainButton" />
+        <val key="HomeMainButtonLight.fgColor" value="ccffff" />
+        <val key="HomeMainButtonLight.press#align" value="4" />
+        <val key="HomeMainButtonLight.press#bgColor" value="01BE59" />
+        <val key="HomeMainButtonLight.press#derive" value="HomeMainButtonLight.sel" />
+        <val key="HomeMainButtonLight.press#fgColor" value="ffffff" />
+        <val key="HomeMainButtonLight.press#transparency" value="255" />
+        <val key="HomeMainButtonLight.sel#derive" value="HomeMainButtonLight.sel" />
+        <val key="HomeMainButtonLight.sel#fgColor" value="01BE59" />
         <val key="LblExam.align" value="4" />
         <val key="LblExam.derive" value="Label" />
         <font key="LblExam.font" type="system" face="0" style="0" size="0" />

@@ -294,6 +294,6 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void postFormRequest(Form f) {
-        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())));
+        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney()))+" "+Utils.modena_str);
     }
 }
