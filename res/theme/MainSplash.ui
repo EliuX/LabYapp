@@ -14,7 +14,7 @@
   </component>
   <component type="Container" name="Container1" cloudDestinationProperty="Container1" >
     <layoutConstraint value="Center" />
-    <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="" icon="tube-logo.png" >
+    <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="" icon="iconApp.svg" >
     </component>
   </component>
 </component>

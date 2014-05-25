@@ -3,7 +3,13 @@
  */
 package userclasses;
 
+import com.codename1.io.Log;
+import com.codename1.location.Location;
+import com.codename1.location.LocationManager;
+import com.codename1.maps.Coord;
 import com.codename1.maps.MapComponent;
+import com.codename1.maps.layers.PointLayer;
+import com.codename1.maps.layers.PointsLayer;
 import com.codename1.messaging.Message;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
@@ -11,6 +17,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
@@ -18,10 +25,11 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.DataChangedListener;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
-import generated.StateMachineBase;
 import com.codename1.ui.util.Resources;
+import generated.StateMachineBase;
+import java.io.IOException;
 import java.util.Hashtable;
-import java.util.Vector;
+import java.util.Vector; 
 import sun.security.pkcs11.wrapper.Constants;
 import userclasses.common.DataManager;
 
@@ -160,12 +168,6 @@ public class StateMachine extends StateMachineBase {
         return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Sí", "No");
     }
 
-    @Override
-    protected void onHomeView_BtnSolicitarAction(Component c, ActionEvent event) {
-        Dialog.show("Exámenes de laboratorio", "Seleccione 1 o más exámenes que desee hacerse en el laboratorio de CONSUSALUD\n¡Todas las visitas a domicilio son GRATIS y sin prepago!", "Entiendo", null);
-        showForm("Main", null);
-    }
-
     /**
      * TODO Usar hilos aqui: Esto puede mostrarse con delays al refresh del
      * sistema
@@ -182,7 +184,7 @@ public class StateMachine extends StateMachineBase {
                 if (lblMoney != null) {
                     lblMoney.setText("$" + DataManager.getInstance().getCountOfMoney());
                 }
-                toogleFooter(count_exams > 0); 
+                toogleFooter(count_exams > 0);
             }
         });
     }
@@ -201,15 +203,15 @@ public class StateMachine extends StateMachineBase {
         } else if (!visible && footer.isVisible()) {
             footer.setPreferredH(0);
             father.animateLayoutAndWait(800);
-        }
+        } 
         footer.setVisible(visible);
     }
 
     @Override
-    protected boolean onMainSiguiente(Command cmd) {
+    protected boolean onMainSiguiente() {
         if (DataManager.getInstance().hasSelection()) {
             return false;
-        }
+        } 
         Dialog.show("Error en la selección", "Por favor seleccione uno o más exámenes que desee hacerse en nuestro laboratorio", "Entendí", null);
         return true;
     }
@@ -234,11 +236,21 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
-    protected void postFormAboutConSuSalud(Form f) {
+    protected void postFormAboutConSuSalud(Form f) { 
+        Location loc;
         MapComponent map = findLabMap(f);
-        map.setPropertyValue("latitude", 3.415828);
-        map.setPropertyValue("longitude", -76.5278743);
-        map.setPropertyValue("zoom", 5);
+        try {
+            loc = LocationManager.getLocationManager().getCurrentLocation();
+            Coord lastLocation = new Coord(3.415828, -76.5278743);  //Donde radica
+            Image i = Image.createImage("/iconApp.svg");
+            PointsLayer pl = new PointsLayer();
+            pl.setPointIcon(i);
+            PointLayer p = new PointLayer(lastLocation, "Residimos aquí", i);
+            p.setDisplayName(true);
+        } catch (IOException ex) {
+            Log.p("No se pudo localizar en el mapa la instalación de ConsuSalud", Log.WARNING); 
+        }
+        map.zoomToLayers();
     }
 
     @Override
@@ -294,6 +306,6 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void postFormRequest(Form f) {
-        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney()))+" "+Utils.modena_str);
+        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())) + " " + Utils.modena_str);
     }
 }

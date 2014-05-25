@@ -312,18 +312,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Label findFullname(Component root) {
-        return (com.codename1.ui.Label)findByName("fullname", root);
-    }
-
-    public com.codename1.ui.Label findFullname() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("fullname", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("fullname", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findTabMainAbout(Component root) {
         return (com.codename1.ui.Container)findByName("TabMainAbout", root);
     }
@@ -492,18 +480,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Label findPrice(Component root) {
-        return (com.codename1.ui.Label)findByName("price", root);
-    }
-
-    public com.codename1.ui.Label findPrice() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("price", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("price", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Tabs findTabs(Component root) {
         return (com.codename1.ui.Tabs)findByName("Tabs", root);
     }
@@ -524,18 +500,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton2", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.components.MultiButton)findByName("MultiButton2", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Container findSelectionRenderer(Component root) {
-        return (com.codename1.ui.Container)findByName("SelectionRenderer", root);
-    }
-
-    public com.codename1.ui.Container findSelectionRenderer() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("SelectionRenderer", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("SelectionRenderer", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -648,19 +612,31 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public static final int COMMAND_HomeViewSolicitarExamen = 3;
     public static final int COMMAND_HomeViewAcercaDeNuestroLaboratorio = 2;
-    public static final int COMMAND_MainSiguiente = 1;
+    public static final int COMMAND_MainSiguiente = 5;
+
+    protected boolean onHomeViewSolicitarExamen() {
+        return false;
+    }
 
     protected boolean onHomeViewAcercaDeNuestroLaboratorio() {
         return false;
     }
 
-    protected boolean onMainSiguiente(Command cmd) {
+    protected boolean onMainSiguiente() {
         return false;
     }
 
     protected void processCommand(ActionEvent ev, Command cmd) {
         switch(cmd.getId()) {
+            case COMMAND_HomeViewSolicitarExamen:
+                if(onHomeViewSolicitarExamen()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
             case COMMAND_HomeViewAcercaDeNuestroLaboratorio:
                 if(onHomeViewAcercaDeNuestroLaboratorio()) {
                     ev.consume();
@@ -669,7 +645,7 @@ public abstract class StateMachineBase extends UIBuilder {
                 break;
 
             case COMMAND_MainSiguiente:
-                if(onMainSiguiente(cmd)) {
+                if(onMainSiguiente()) {
                     ev.consume();
                     return;
                 }
@@ -706,12 +682,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(f.getName())) {
-            exitSelectionRenderer(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(f.getName())) {
             exitMainSplash(f);
             aboutToShowThisContainer = null;
@@ -735,10 +705,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void exitMain(Form f) {
-    }
-
-
-    protected void exitSelectionRenderer(Form f) {
     }
 
 
@@ -771,12 +737,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(f.getName())) {
-            beforeSelectionRenderer(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(f.getName())) {
             beforeMainSplash(f);
             aboutToShowThisContainer = null;
@@ -800,10 +760,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void beforeMain(Form f) {
-    }
-
-
-    protected void beforeSelectionRenderer(Form f) {
     }
 
 
@@ -836,12 +792,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(c.getName())) {
-            beforeContainerSelectionRenderer(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(c.getName())) {
             beforeContainerMainSplash(c);
             aboutToShowThisContainer = null;
@@ -865,10 +815,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void beforeContainerMain(Container c) {
-    }
-
-
-    protected void beforeContainerSelectionRenderer(Container c) {
     }
 
 
@@ -900,12 +846,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(f.getName())) {
-            postSelectionRenderer(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(f.getName())) {
             postMainSplash(f);
             aboutToShowThisContainer = null;
@@ -929,10 +869,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void postMain(Form f) {
-    }
-
-
-    protected void postSelectionRenderer(Form f) {
     }
 
 
@@ -964,12 +900,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(c.getName())) {
-            postContainerSelectionRenderer(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(c.getName())) {
             postContainerMainSplash(c);
             aboutToShowThisContainer = null;
@@ -993,10 +923,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void postContainerMain(Container c) {
-    }
-
-
-    protected void postContainerSelectionRenderer(Container c) {
     }
 
 
@@ -1028,12 +954,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(rootName)) {
-            onCreateSelectionRenderer();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(rootName)) {
             onCreateMainSplash();
             aboutToShowThisContainer = null;
@@ -1057,10 +977,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void onCreateMain() {
-    }
-
-
-    protected void onCreateSelectionRenderer() {
     }
 
 
@@ -1093,12 +1009,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("SelectionRenderer".equals(f.getName())) {
-            getStateSelectionRenderer(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
         if("MainSplash".equals(f.getName())) {
             getStateMainSplash(f, h);
             aboutToShowThisContainer = null;
@@ -1122,10 +1032,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void getStateMain(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateSelectionRenderer(Form f, Hashtable h) {
     }
 
 
@@ -1158,12 +1064,6 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("SelectionRenderer".equals(f.getName())) {
-            setStateSelectionRenderer(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
         if("MainSplash".equals(f.getName())) {
             setStateMainSplash(f, state);
             aboutToShowThisContainer = null;
@@ -1187,10 +1087,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
 
     protected void setStateMain(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateSelectionRenderer(Form f, Hashtable state) {
     }
 
 

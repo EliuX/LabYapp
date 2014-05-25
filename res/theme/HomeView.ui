@@ -11,7 +11,7 @@
   </component>
   <component type="Container" name="HomeFooter" cloudDestinationProperty="HomeFooter" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
-    <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" uiid="HomeMainButtonLight" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
+    <component type="Button" name="btnSolicitar" cloudDestinationProperty="btnSolicitar" commandName="Solicitar examen" commandId="3" commandAction="Main" commandBack="false" uiid="HomeMainButtonLight" text="Solicitar examen" verticalAlignment="0" textPosition="0" >
     </component>
     <component type="Button" name="btnAbout" cloudDestinationProperty="btnSolicitar" commandName="Acerca de nuestro Laboratorio" commandId="2" commandAction="FormAboutConSuSalud" commandBack="false" uiid="HomeMainButton" text="Acerca de nuestro Laboratorio" verticalAlignment="0" textPosition="0" >
     </component>

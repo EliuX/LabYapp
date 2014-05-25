@@ -37,7 +37,7 @@
       <component type="MapComponent" name="LabMap" cloudDestinationProperty="MapComponent" snapToGrid="true" flatten="false" >
         <layoutConstraint value="North" />
         <custom name="latitude" type="java.lang.Double" value="4970299.6573121" />
-        <custom name="zoom" type="java.lang.Integer" value="0" />
+        <custom name="zoom" type="java.lang.Integer" value="5" />
       </component>
     </component>
   </component>
