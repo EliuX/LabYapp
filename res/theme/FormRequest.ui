@@ -56,6 +56,9 @@
       </component>
       <component type="Label" name="TotalRequestCost" cloudDestinationProperty="TotalRequestCost" uiid="StatusExamFooter" snapToGrid="true" text="0" verticalAlignment="0" >
       </component>
+      <component type="SpanLabel" name="LblNP" cloudDestinationProperty="LblNonPayable" uiid="StatusExamFooter" focusable="true" >
+        <custom name="text" type="java.lang.String" value="Existen ex&#xe1;menes cuyos valores le ser&#xe1;n notificados despu&#xe9;s" />
+      </component>
     </component>
   </component>
   <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >

@@ -18,8 +18,10 @@ import userclasses.common.FilterProxyListModel;
  * Model for the exams list!
  */
 public class ExamsModel extends FilterProxyListModel {
-    //Data file's name  
-    static public String EXAMS_FILE = "exams.json";
+    //Data file's name
+    static public String EXAMS_STORAGE = "exams";
+    static public String EXAMS_FILE = EXAMS_STORAGE + ".json";
+    static public String EXAMS_FILE_CLOUD = "http://localhost/"+EXAMS_FILE;
     //Fields´ constants
     static public String FIELD_PRICE = "price";
     static public String FIELD_PRICE_AFILIATED = "price2";

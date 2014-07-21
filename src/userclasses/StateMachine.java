@@ -3,21 +3,13 @@
  */
 package userclasses;
 
-import com.codename1.io.Log;
-import com.codename1.location.Location;
-import com.codename1.location.LocationManager;
-import com.codename1.maps.Coord;
-import com.codename1.maps.MapComponent;
-import com.codename1.maps.layers.PointLayer;
-import com.codename1.maps.layers.PointsLayer;
+import com.codename1.components.WebBrowser;
 import com.codename1.messaging.Message;
-import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
-import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.TextField;
@@ -27,7 +19,6 @@ import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.list.MultiList;
 import com.codename1.ui.util.Resources;
 import generated.StateMachineBase;
-import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector; 
 import sun.security.pkcs11.wrapper.Constants;
@@ -38,11 +29,10 @@ import userclasses.common.DataManager;
  * @author Your name here
  */
 public class StateMachine extends StateMachineBase {
-
     DefaultListModel examsModel;
     ExamsModel proxyModel;
     TextField btnSearch = null;
-    MultiList listMain = null;
+    MultiList listMain = null; 
     /**
      * Versiones locales de recursos: Optimizacion
      */
@@ -63,9 +53,9 @@ public class StateMachine extends StateMachineBase {
      */
     @Override
     protected void initVars(Resources res) {
-        Vector vData = DataManager.getInstance(res).getData(ExamsModel.EXAMS_FILE);
+        Vector vData = DataManager.getInstance(res).getData();
         examsModel = new DefaultListModel(vData);
-        proxyModel = new ExamsModel(examsModel);
+        proxyModel = new ExamsModel(examsModel); 
     }
 
     @Override
@@ -133,7 +123,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected String getFirstFormName() {
-        return "MainSplash";
+        return "HomeView";
     }
 
     @Override
@@ -154,16 +144,20 @@ public class StateMachine extends StateMachineBase {
      * @return
      */
     public Boolean ShowDataExam(Hashtable<String, String> field) {
-        String txt = field.get(ExamsModel.FIELD_FULLNAME)
-                + Constants.NEWLINE + "Precio:" + Constants.INDENT + Constants.INDENT + Constants.INDENT
-                + Utils.print_money(field.get(ExamsModel.FIELD_PRICE));
+        String txt = field.get(ExamsModel.FIELD_FULLNAME);  //Asi empieza
+        String precio = field.get(ExamsModel.FIELD_PRICE);
+        if (!DataManager.isEmpty(precio)){
+            txt = txt.concat(Constants.NEWLINE + "Precio:"  + Constants.INDENT + Constants.INDENT + Utils.print_money(precio));   
+        }else{
+            txt = txt.concat(Constants.NEWLINE + "El precio es variable: Contactar por teléfono" + Constants.NEWLINE );
+        }
         String price_afiliado = field.get(ExamsModel.FIELD_PRICE_AFILIATED);
         if (!DataManager.isEmpty(price_afiliado)) {
             txt = txt.concat(Constants.NEWLINE + "Precio de afiliados:" + Constants.INDENT + Utils.print_money(price_afiliado));
         }
         String freq = field.get(ExamsModel.FIELD_FREQUENCY);
         if (!DataManager.isEmpty(freq)) {
-            txt = txt.concat(Constants.NEWLINE + "Frecuencia:" + Constants.INDENT + freq);
+            txt = txt.concat(Constants.NEWLINE + "Días de proceso:" + Constants.INDENT + freq);
         }
         return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Sí", "No");
     }
@@ -178,11 +172,12 @@ public class StateMachine extends StateMachineBase {
                 Label lblExams = findStatusExams();
                 Label lblMoney = findStatusMoney();
                 int count_exams = DataManager.getInstance().getSelection().size();
+                int count_exams_non_payable = DataManager.getInstance().getSelectionNonPayable().size();
                 if (lblExams != null) {
                     lblExams.setText(String.valueOf(count_exams));
                 }
                 if (lblMoney != null) {
-                    lblMoney.setText("$" + DataManager.getInstance().getCountOfMoney());
+                    lblMoney.setText((count_exams_non_payable>0 ? "> " : "") + "$" + DataManager.getInstance().getCountOfMoney());
                 }
                 toogleFooter(count_exams > 0);
             }
@@ -233,24 +228,6 @@ public class StateMachine extends StateMachineBase {
         }
         cmp.setModel(new DefaultListModel(DataManager.getInstance().getSelection()));
         return true;
-    }
-
-    @Override
-    protected void postFormAboutConSuSalud(Form f) { 
-        Location loc;
-        MapComponent map = findLabMap(f);
-        try {
-            loc = LocationManager.getLocationManager().getCurrentLocation();
-            Coord lastLocation = new Coord(3.415828, -76.5278743);  //Donde radica
-            Image i = Image.createImage("/iconApp.svg");
-            PointsLayer pl = new PointsLayer();
-            pl.setPointIcon(i);
-            PointLayer p = new PointLayer(lastLocation, "Residimos aquí", i);
-            p.setDisplayName(true);
-        } catch (IOException ex) {
-            Log.p("No se pudo localizar en el mapa la instalación de ConsuSalud", Log.WARNING); 
-        }
-        map.zoomToLayers();
     }
 
     @Override
@@ -306,6 +283,9 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void postFormRequest(Form f) {
-        findTotalRequestCost(f).setText("Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())) + " " + Utils.modena_str);
-    }
+        Vector<Hashtable<String, String>> selectionNonPayable = DataManager.getInstance().getSelectionNonPayable();
+        String prefix = selectionNonPayable.size() > 0 ? "> " : "";
+        findTotalRequestCost(f).setText("Costo: " + prefix + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())) + " " + Utils.modena_str);
+        findLblNP(f).setVisible(selectionNonPayable.size() > 0); //Si hay no pagables, entonces que se muestre
+    } 
 }

@@ -1,2 +1,6 @@
 syntax: glob
 build/*
+dist/*
+out/production/Labyapp/userclasses/*
+.idea/*
+*.class

@@ -33,7 +33,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container startApp(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("MapComponent", com.codename1.maps.MapComponent.class);
         UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
@@ -81,7 +80,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container createWidget(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("MapComponent", com.codename1.maps.MapComponent.class);
         UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
@@ -204,6 +202,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.components.SpanLabel findLblNP(Component root) {
+        return (com.codename1.components.SpanLabel)findByName("LblNP", root);
+    }
+
+    public com.codename1.components.SpanLabel findLblNP() {
+        com.codename1.components.SpanLabel cmp = (com.codename1.components.SpanLabel)findByName("LblNP", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.SpanLabel)findByName("LblNP", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.TextField findTxtSearch(Component root) {
         return (com.codename1.ui.TextField)findByName("txtSearch", root);
     }
@@ -312,18 +322,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findTabMainAbout(Component root) {
-        return (com.codename1.ui.Container)findByName("TabMainAbout", root);
-    }
-
-    public com.codename1.ui.Container findTabMainAbout() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("TabMainAbout", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("TabMainAbout", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findContainer(Component root) {
         return (com.codename1.ui.Container)findByName("Container", root);
     }
@@ -344,18 +342,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup1", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.ComponentGroup)findByName("ComponentGroup1", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Container findTabMapAbout(Component root) {
-        return (com.codename1.ui.Container)findByName("TabMapAbout", root);
-    }
-
-    public com.codename1.ui.Container findTabMapAbout() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("TabMapAbout", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("TabMapAbout", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -408,18 +394,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Label findTotalRequestCost(Component root) {
-        return (com.codename1.ui.Label)findByName("TotalRequestCost", root);
-    }
-
-    public com.codename1.ui.Label findTotalRequestCost() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Button findBtnSolicitar(Component root) {
         return (com.codename1.ui.Button)findByName("btnSolicitar", root);
     }
@@ -440,6 +414,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("UserData", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.ComponentGroup)findByName("UserData", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findTotalRequestCost(Component root) {
+        return (com.codename1.ui.Label)findByName("TotalRequestCost", root);
+    }
+
+    public com.codename1.ui.Label findTotalRequestCost() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -480,14 +466,14 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Tabs findTabs(Component root) {
-        return (com.codename1.ui.Tabs)findByName("Tabs", root);
+    public com.codename1.components.MultiButton findMultiButton(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton", root);
     }
 
-    public com.codename1.ui.Tabs findTabs() {
-        com.codename1.ui.Tabs cmp = (com.codename1.ui.Tabs)findByName("Tabs", Display.getInstance().getCurrent());
+    public com.codename1.components.MultiButton findMultiButton() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Tabs)findByName("Tabs", aboutToShowThisContainer);
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -596,18 +582,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("ListSelection", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.list.MultiList)findByName("ListSelection", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.maps.MapComponent findLabMap(Component root) {
-        return (com.codename1.maps.MapComponent)findByName("LabMap", root);
-    }
-
-    public com.codename1.maps.MapComponent findLabMap() {
-        com.codename1.maps.MapComponent cmp = (com.codename1.maps.MapComponent)findByName("LabMap", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.maps.MapComponent)findByName("LabMap", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1132,6 +1106,10 @@ public abstract class StateMachineBase extends UIBuilder {
             }
         }
         if(rootContainerName.equals("FormAboutConSuSalud")) {
+            if("MultiButton2".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButton2Action(c, event);
+                return;
+            }
             if("MultiButton4".equals(c.getName())) {
                 onFormAboutConSuSalud_MultiButton4Action(c, event);
                 return;
@@ -1140,8 +1118,8 @@ public abstract class StateMachineBase extends UIBuilder {
                 onFormAboutConSuSalud_MultiButton1Action(c, event);
                 return;
             }
-            if("MultiButton2".equals(c.getName())) {
-                onFormAboutConSuSalud_MultiButton2Action(c, event);
+            if("MultiButton".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButtonAction(c, event);
                 return;
             }
         }
@@ -1193,13 +1171,16 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onHomeView_BtnAboutAction(Component c, ActionEvent event) {
       }
 
+      protected void onFormAboutConSuSalud_MultiButton2Action(Component c, ActionEvent event) {
+      }
+
       protected void onFormAboutConSuSalud_MultiButton4Action(Component c, ActionEvent event) {
       }
 
       protected void onFormAboutConSuSalud_MultiButton1Action(Component c, ActionEvent event) {
       }
 
-      protected void onFormAboutConSuSalud_MultiButton2Action(Component c, ActionEvent event) {
+      protected void onFormAboutConSuSalud_MultiButtonAction(Component c, ActionEvent event) {
       }
 
       protected void onFormRequest_UsernameAction(Component c, ActionEvent event) {

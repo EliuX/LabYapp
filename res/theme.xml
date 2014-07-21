@@ -28,6 +28,7 @@
             <entry key="Acerca de nuestro Laboratorio" value="About our Lab" />
             <entry key="Datos" value="Data" />
             <entry key="P&#xe1;gina web" value="Web page" />
+            <entry key="Existen ex&#xe1;menes cuyos valores le ser&#xe1;n notificados despu&#xe9;s" value="Existen ex&#xe1;menes cuyos valores le ser&#xe1;n notificados despu&#xe9;s" />
             <entry key="Tel&#xe9;fono donde contactarle" value="Phone to be contacted" />
             <entry key="edit" value="Edit" />
             <entry key="Su nombre completo" value="Fullname please..." />
@@ -53,40 +54,46 @@
             <entry key="Solicitar examen" value="Request test" />
         </lang>
         <lang name="es">
-            <entry key="MultiButton" value="MultiButton" />
-            <entry key="-" value="-" />
-            <entry key="+" value="+" />
-            <entry key="Siguiente" value="Siguiente" />
-            <entry key="Cargando Ex&#xe1;menes de Laboratorio" value="Cargando Ex&#xe1;menes de Laboratorio" />
-            <entry key="Tel&#xe9;fono" value="Tel&#xe9;fono" />
-            <entry key="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" value="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" />
-            <entry key="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" value="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" />
-            <entry key="Sus datos" value="Sus datos" />
-            <entry key="Acerca de nuestro Laboratorio" value="Acerca de nuestro Laboratorio" />
-            <entry key="Seleccionar ex&#xe1;men" value="Seleccionar ex&#xe1;men" />
-            <entry key="Sus datos para contactarle" value="Sus datos para contactarle" />
-            <entry key="Direcci&#xf3;n" value="Direcci&#xf3;n" />
-            <entry key="Solicitar examen" value="Solicitar examen" />
-            <entry key="Selecci&#xf3;n" value="Selecci&#xf3;n" />
-            <entry key="Recomenzar" value="Recomenzar" />
-            <entry key="&#xbf;Quienes somos?" value="&#xbf;Quienes somos?" />
-            <entry key="&#xbf;Donde radicamos?" value="&#xbf;Donde radicamos?" />
-            <entry key="about.consusalud" value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
-            <entry key="Enviar datos" value="Enviar datos" />
-            <entry key="3845598; 316 4198404; 316 9675471" value="3845598; 316 4198404; 316 9675471" />
-            <entry key="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" value="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" />
-            <entry key="http://www.consusalud.com" value="http://www.consusalud.com" />
-            <entry key="Su nombre completo" value="Su nombre completo" />
-            <entry key="Tel&#xe9;fono donde contactarle" value="Tel&#xe9;fono donde contactarle" />
-            <entry key="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" value="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" />
-            <entry key="P&#xe1;gina web" value="P&#xe1;gina web" />
-            <entry key="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" value="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" />
-            <entry key="Datos" value="Datos" />
-            <entry key="1. {Line2=more..., Line1=Entry 1}" value="1. {Line2=more..., Line1=Entry 1}" />
-            <entry key="Ex&#xe1;menes que usted seleccion&#xf3;" value="Ex&#xe1;menes que usted seleccion&#xf3;" />
-            <entry key="0" value="0" />
             <entry key="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
+            <entry key="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" value="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" />
+            <entry key="Sus datos para contactarle" value="Sus datos para contactarle" />
+            <entry key="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" value="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" />
+            <entry key="1. {Line2=more..., Line1=Entry 1}" value="1. {Line2=more..., Line1=Entry 1}" />
+            <entry key="MultiButton" value="MultiButton" />
+            <entry key="cancel" value="Cancelar" />
+            <entry key="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" value="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" />
+            <entry key="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" value="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" />
+            <entry key="&#xbf;Quienes somos?" value="&#xbf;Quienes somos?" />
+            <entry key="Seleccionar ex&#xe1;men" value="Seleccionar ex&#xe1;men" />
+            <entry key="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" value="Piso 2 Calle 14 # 41-42, Cali, Valle del Cauca, Colombia" />
+            <entry key="Siguiente" value="Siguiente" />
+            <entry key="Acerca de nuestro Laboratorio" value="Acerca de nuestro Laboratorio" />
+            <entry key="Datos" value="Datos" />
+            <entry key="P&#xe1;gina web" value="P&#xe1;gina web" />
+            <entry key="Existen ex&#xe1;menes cuyos valores le ser&#xe1;n notificados despu&#xe9;s" value="Existen ex&#xe1;menes cuyos valores le ser&#xe1;n notificados despu&#xe9;s" />
+            <entry key="Tel&#xe9;fono donde contactarle" value="Tel&#xe9;fono donde contactarle" />
+            <entry key="edit" value="Editar" />
+            <entry key="Su nombre completo" value="Su nombre completo" />
+            <entry key="Enviar datos" value="Enviar datos" />
+            <entry key="Cargando Ex&#xe1;menes de Laboratorio" value="Cargando Ex&#xe1;menes de Laboratorio" />
+            <entry key="http://www.consusalud.com" value="http://www.consusalud.com" />
+            <entry key="about.consusalud" value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
+            <entry key="0" value="0" />
+            <entry key="-" value="-" />
+            <entry key="Direcci&#xf3;n" value="Direcci&#xf3;n" />
+            <entry key="+" value="+" />
+            <entry key="Selecci&#xf3;n" value="Selecci&#xf3;n" />
+            <entry key="ok" value="Ok" />
+            <entry key="Tel&#xe9;fono" value="Tel&#xe9;fono" />
+            <entry key="select" value="Seleccionar" />
             <entry key="Presione &quot;Enviar datos&quot; al terminar" value="Presione &quot;Enviar datos&quot; al terminar" />
+            <entry key="&#xbf;Donde radicamos?" value="&#xbf;Donde radicamos?" />
+            <entry key="Recomenzar" value="Recomenzar" />
+            <entry key="Sus datos" value="Sus datos" />
+            <entry key="3845598; 316 4198404; 316 9675471" value="3845598; 316 4198404; 316 9675471" />
+            <entry key="menu" value="Men&#xfa;" />
+            <entry key="Ex&#xe1;menes que usted seleccion&#xf3;" value="Ex&#xe1;menes que usted seleccion&#xf3;" />
+            <entry key="Solicitar examen" value="Solicitar examen" />
         </lang>
     </l10n>
     <image name="logoLabYapp.png" type="multi"  />
@@ -94,6 +101,7 @@
     <ui name="MainSplash" />
     <image name="mini32x32.png" type="multi"  />
     <theme name="Theme">
+        <val key="@commandBehavior" value="2" />
         <val key="@includeNativeBool" value="true" />
         <val key="@touchCommandFillBool" value="true" />
         <val key="BigBtn.bgColor" value="6a9b00" />
@@ -118,7 +126,6 @@
         <val key="BtnConsusalud.transparency" value="250" />
         <val key="GeneralCmpBlue.bgColor" value="00AEEF" />
         <val key="GeneralCmpBlue.fgColor" value="ffffff" />
-        <val key="GeneralCmpBlue.transparency" value="255" />
         <val key="GreenLabel.bgColor" value="6a9b00" />
         <val key="GreenLabel.fgColor" value="e4faef" />
         <font key="GreenLabel.font" type="system" face="64" style="1" size="0" />

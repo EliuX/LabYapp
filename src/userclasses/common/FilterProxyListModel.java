@@ -44,6 +44,7 @@ public abstract class FilterProxyListModel implements ListModel, DataChangedList
 
     public void filter(String str) {
         filter = new Vector();
+        str = str.toUpperCase();
         for (int iter = 0; iter < underlying.getSize(); iter++) {
             if (check(ItemtoString(underlying.getItemAt(iter)), str)) {
                 filter.addElement(new Integer(iter));

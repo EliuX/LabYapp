@@ -5,15 +5,16 @@
  */
 package userclasses.common;
 
-import com.codename1.io.JSONParser;
-import com.codename1.io.Log;
+import com.codename1.components.InfiniteProgress;
+import com.codename1.io.*;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.util.Resources;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.util.Hashtable;
 import java.util.Vector;
 import userclasses.ExamsModel;
+import userclasses.Utils;
 
 /**
  *
@@ -24,6 +25,7 @@ public class DataManager {
     Hashtable response = new Hashtable();
     JSONParser parser = new JSONParser();
     Vector<Hashtable<String, String>> selection;
+    Vector<Hashtable<String, String>> selection_non_payable;    //Lo seleccionado pero que no se puede pagar
     Hashtable<String, Object> last_request;
     static Resources res;
     private static final DataManager INSTANCE = new DataManager();
@@ -42,10 +44,32 @@ public class DataManager {
         return INSTANCE;
     }
 
-    public Vector getData(String filename) {
+    public Vector getData() {
+        if (response == null || response.isEmpty()) {
+            try{
+                if(Utils.is_production){
+                    Vector saved_data = getDataFromStorage();
+                    if(saved_data!=null){   //TODO Comprobar fecha de ultima actualizacion para saber si los datos son buenos.
+                        return saved_data;
+                    }
+                    //Si no tiene datos salvado entonces esta es su primera vez
+                    Vector res = getDataFromCloud();
+                    return res;
+                }else{
+                    return getDataFromFile();
+                }
+            }catch (IOException e){
+                Dialog.show(Utils.ERR_TITLE, "No se pudo cargar los datos de los exámenes.\nRevise su conexión a internet o reinicie la aplicación por favor.", "Ok", null);
+                return null;
+            }
+        }
+        return (Vector) response.get("root");
+    }
+
+    public Vector getDataFromFile(){
         if (response == null || response.isEmpty()) {
             try {
-                InputStream istream = res.getData(filename);
+                InputStream istream = res.getData(ExamsModel.EXAMS_FILE);
                 InputStreamReader reader = new InputStreamReader(istream);
                 response = parser.parse(reader);
             } catch (IOException ex) {
@@ -53,6 +77,70 @@ public class DataManager {
             }
         }
         return (Vector) response.get("root");
+    }
+
+    /**
+     * Descarga los datos de la nube
+     * @return
+     */
+    public Vector getDataFromCloud() throws IOException{
+        if (response == null || response.isEmpty()) {
+            ConnectionRequest request = new ConnectionRequest() {
+                protected void handleException(Exception err) {
+                   showConnErr();
+                }
+            };
+            request.setUrl(ExamsModel.EXAMS_FILE_CLOUD);
+            InfiniteProgress iProgress = new InfiniteProgress();
+            Dialog dlg = iProgress.showInifiniteBlocking(); //Muestro el cartel de cargando
+            request.setDisposeOnCompletion(dlg);
+            NetworkManager.getInstance().addToQueueAndWait(request);
+            byte[] cloud_response_bytes = request.getResponseData();
+            if(cloud_response_bytes==null){
+                showConnErr();
+                return null;
+            }
+            
+            InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(cloud_response_bytes));
+            response = parser.parse(reader);
+            Storage s = Storage.getInstance(); //Hago la salva pertinente en la base de datos
+          //  s.writeObject(ExamsModel.EXAMS_STORAGE,response); //TODO Borrar  //Lo cacheo para para la proxima vez
+        }
+        return (Vector) response.get("root");
+    }
+    
+    private void showConnErr(){
+        Dialog.show(Utils.ERR_TITLE, "No se puede establecer la conexion con \"consusalud.co\" ¿Esta usted conectado a Internet?\nRevise su conexión por favor", "Ok", null);       
+    }
+
+    /**
+     * Devuelve los examenes almacenados en la DB interna de la App
+     * @return
+     */
+    public Vector getDataFromStorage() throws IOException{
+        Storage s = Storage.getInstance();
+        response = (Hashtable)s.readObject(ExamsModel.EXAMS_STORAGE);
+        if(response != null){
+           return (Vector) response.get("root");
+        }
+        return null;
+    }
+
+    public void saveDataIntoStorage(String index,String data){
+        Storage s = Storage.getInstance();
+        s.writeObject(index, data);
+    }
+
+    public Object readOrCreate(String index,String... def){
+        Storage s = Storage.getInstance();
+        Object response = s.readObject(index);
+        if(s==null){
+            if(def.length>0){
+                saveDataIntoStorage(index,def[0]);
+            }
+            return def;
+        }
+        return response;
     }
 
     /**
@@ -66,23 +154,49 @@ public class DataManager {
         {
             if (!selection.contains(exam)) {
                 selection.add(exam);
+                if(exam.get(ExamsModel.FIELD_PRICE).length()==0){ //Entonces es un no pagable
+                    toogleSelectedNonPayable(exam,true); 
+                }
             }
         } else {      //Deseleccionado
             if (selection.contains(exam)) {
                 selection.remove(exam);
+                if(exam.get(ExamsModel.FIELD_PRICE).length()==0){ //Entonces es un no pagable y lo quito
+                    toogleSelectedNonPayable(exam,false); 
+                }
             }
         }
         exam.put(ExamsModel.FIELD_SELECTION, selected.toString());
+    }
+    
+    /**
+     * Similar a toogleSelected pero para los no pagables
+     * @param exam
+     * @param selected 
+     */
+    public void toogleSelectedNonPayable(Hashtable<String, String> exam, Boolean selected) {
+        if (selected) //Seleccionado
+        {
+            if (!selection_non_payable.contains(exam)) {
+                selection_non_payable.add(exam);
+            }
+        } else {      //Deseleccionado
+            if (selection_non_payable.contains(exam)) {
+                selection_non_payable.remove(exam);
+            }
+        } 
     }
 
     synchronized public void resetSelection() {
         if (selection == null) {
             selection = new Vector<Hashtable<String, String>>();
+            selection_non_payable = new Vector<Hashtable<String, String>>();
         } else {
             for (Hashtable<String, String> exam : selection) {
                 exam.put(ExamsModel.FIELD_SELECTION, Boolean.FALSE.toString());
             }
             selection.clear();
+            selection_non_payable.clear();
         }
     }
 
@@ -98,12 +212,22 @@ public class DataManager {
     public Vector<Hashtable<String, String>> getSelection() {
         return selection;
     }
+    
+    /**
+     * Devuelve el Listado de los elementos seleccionables que no tienen indicado precio aun
+     * @return 
+     */
+    public Vector<Hashtable<String, String>> getSelectionNonPayable() {
+        return selection_non_payable;
+    } 
 
     public int getCountOfMoney() {
         int count_money = 0;
         for (Hashtable<String, String> exam : selection) {
             String price = exam.get(ExamsModel.FIELD_PRICE);
-            count_money += Float.valueOf(price.substring(1));
+            if(price.length()>1){ 
+                count_money += Float.valueOf(price.substring(1));
+            }     
         }
         return count_money;
     } 
