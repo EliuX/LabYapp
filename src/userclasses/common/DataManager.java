@@ -46,8 +46,8 @@ public class DataManager {
 
     public Vector getData() {
         if (response == null || response.isEmpty()) {
-            try{
-                if(Utils.is_production){
+            /*try{
+                if(Utils.is_production && Utils.isNecessaryUpdateFromCloud()){
                     Vector saved_data = getDataFromStorage();
                     if(saved_data!=null){   //TODO Comprobar fecha de ultima actualizacion para saber si los datos son buenos.
                         return saved_data;
@@ -61,7 +61,8 @@ public class DataManager {
             }catch (IOException e){
                 Dialog.show(Utils.ERR_TITLE, "No se pudo cargar los datos de los exámenes.\nRevise su conexión a internet o reinicie la aplicación por favor.", "Ok", null);
                 return null;
-            }
+            }*/
+            return getDataFromFile();    
         }
         return (Vector) response.get("root");
     }
@@ -104,7 +105,8 @@ public class DataManager {
             InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(cloud_response_bytes));
             response = parser.parse(reader);
             Storage s = Storage.getInstance(); //Hago la salva pertinente en la base de datos
-          //  s.writeObject(ExamsModel.EXAMS_STORAGE,response); //TODO Borrar  //Lo cacheo para para la proxima vez
+            s.writeObject(ExamsModel.EXAMS_STORAGE, response); //Lo cacheo para para la proxima vez
+            s.writeObject(ExamsModel.EXAMS_STORAGE_LAST_UPDATE, Utils.getDate());   //Fecha de la ultima actualizacion
         }
         return (Vector) response.get("root");
     }
@@ -131,10 +133,9 @@ public class DataManager {
         s.writeObject(index, data);
     }
 
-    public Object readOrCreate(String index,String... def){
-        Storage s = Storage.getInstance();
-        Object response = s.readObject(index);
-        if(s==null){
+    public Object readOrCreate(String index,String... def){ 
+        Object response = Storage.getInstance().readObject(index);
+        if(response==null){
             if(def.length>0){
                 saveDataIntoStorage(index,def[0]);
             }

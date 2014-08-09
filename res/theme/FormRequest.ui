@@ -25,7 +25,7 @@
         </component>
         <component type="TextField" name="username" cloudBoundProperty="text" cloudDestinationProperty="username" labelFor="lblUserName" focusable="false" snapToGrid="true" text="" hint="Su nombre completo" >
         </component>
-        <component type="TextField" name="userphone" cloudBoundProperty="text" cloudDestinationProperty="userphone" text="" hint="Tel&#xe9;fono donde contactarle" >
+        <component type="TextField" name="userphone" cloudBoundProperty="text" cloudDestinationProperty="userphone" text="" constraint="3" maxSize="11" hint="Tel&#xe9;fono donde contactarle" >
         </component>
         <component type="CheckBox" name="userafiliation" cloudDestinationProperty="userafiliation" text="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" >
         </component>
@@ -61,10 +61,12 @@
       </component>
     </component>
   </component>
-  <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" >
+  <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" rtl="false" scrollVisible="false" scrollableX="false" scrollableY="false" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
     <layoutConstraint value="South" />
-    <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" uiid="BigBtn" flatten="false" text="Enviar datos" >
-      <layoutConstraint value="South" />
+    <component type="Button" name="BtnReselectExams" cloudDestinationProperty="BtnEnviar" commandName="Reseleccionar ex&#xe1;menes" commandId="8" commandAction="Main" commandBack="true" uiid="BigBtnSecondary" flatten="false" text="Reseleccionar ex&#xe1;menes" verticalAlignment="4" >
+      <custom name="maskName" type="java.lang.String" value="" />
+    </component>
+    <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" uiid="BigBtn" flatten="false" text="Enviar datos" verticalAlignment="4" >
       <custom name="maskName" type="java.lang.String" value="" />
     </component>
   </component>

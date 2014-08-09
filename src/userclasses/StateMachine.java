@@ -3,7 +3,7 @@
  */
 package userclasses;
 
-import com.codename1.components.WebBrowser;
+import com.codename1.io.Storage;
 import com.codename1.messaging.Message;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -26,7 +26,7 @@ import userclasses.common.DataManager;
 
 /**
  *
- * @author Your name here
+ * @author eliecer.hernandez
  */
 public class StateMachine extends StateMachineBase {
     DefaultListModel examsModel;
@@ -52,15 +52,14 @@ public class StateMachine extends StateMachineBase {
      * @param res
      */
     @Override
-    protected void initVars(Resources res) {
-        Vector vData = DataManager.getInstance(res).getData();
-        examsModel = new DefaultListModel(vData);
+    protected void initVars(Resources res) { 
+        examsModel = new DefaultListModel(DataManager.getInstance(res).getData());
         proxyModel = new ExamsModel(examsModel); 
     }
 
     @Override
     protected boolean initListModelMultiList(List cmp) {
-        cmp.setModel(proxyModel);
+        cmp.setModel(proxyModel);   
         return true;
     }
 
@@ -75,6 +74,7 @@ public class StateMachine extends StateMachineBase {
                 });
             }
         });
+        
         lblstatus = findStatusExams(f);
         lblmoney = findStatusMoney(f);
         footerBar = findFooterBar(f);
@@ -123,7 +123,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected String getFirstFormName() {
-        return "HomeView";
+        return "MainSplash";
     }
 
     @Override
@@ -232,7 +232,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onFormRequest_BtnEnviarAction(Component c, ActionEvent event) {
-        GatherData();
+        GatherData();   //Recojo los datos y valido
         Hashtable<String, Object> request = DataManager.getInstance().getSuccellFullRequest();
         if (request.isEmpty()) {
             return;
@@ -249,6 +249,8 @@ public class StateMachine extends StateMachineBase {
         }
         body += Utils.NEWSEGMENT + "Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney()));
         Display.getInstance().sendMessage(new String[]{Utils.ENTERPRISE_MAIL}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
+        //Hago la salva pertinente en la base de datos 
+       // Storage.getInstance().writeObject(ExamsModel.EXAMS_SELECTED_STORAGE, list);  //Examenes
     }
 
     public void GatherData() {
@@ -267,8 +269,8 @@ public class StateMachine extends StateMachineBase {
         if (DataManager.isEmpty(params.get("fullname")) || DataManager.isEmpty(params.get("phone"))) {
             errorsMsg += "Faltan datos por especificar" + Utils.NEWLINE;
         }
-
-        if (fullname.lastIndexOf(" ") < 3) {
+        
+        if (fullname.lastIndexOf(" ")<3) {
             errorsMsg += "Por favor introduzca su nombre completo correctamente." + Utils.NEWLINE;
         }
         if (!findUserphone().validChar(phone)) {

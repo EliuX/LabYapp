@@ -47,8 +47,8 @@
             <entry key="Presione &quot;Enviar datos&quot; al terminar" value="Press &quot;Send data&quot; when you finish" />
             <entry key="&#xbf;Donde radicamos?" value="Where are we located?" />
             <entry key="Recomenzar" value="Restart" />
-            <entry key="3845598; 316 4198404; 316 9675471" value="3845598; 316 4198404; 316 9675471" />
             <entry key="Sus datos" value="Your data" />
+            <entry key="3845598; 316 4198404; 316 9675471" value="3845598; 316 4198404; 316 9675471" />
             <entry key="menu" value="Menu" />
             <entry key="Ex&#xe1;menes que usted seleccion&#xf3;" value="Selected tests" />
             <entry key="Solicitar examen" value="Request test" />
@@ -89,8 +89,8 @@
             <entry key="Presione &quot;Enviar datos&quot; al terminar" value="Presione &quot;Enviar datos&quot; al terminar" />
             <entry key="&#xbf;Donde radicamos?" value="&#xbf;Donde radicamos?" />
             <entry key="Recomenzar" value="Recomenzar" />
-            <entry key="Sus datos" value="Sus datos" />
             <entry key="3845598; 316 4198404; 316 9675471" value="3845598; 316 4198404; 316 9675471" />
+            <entry key="Sus datos" value="Sus datos" />
             <entry key="menu" value="Men&#xfa;" />
             <entry key="Ex&#xe1;menes que usted seleccion&#xf3;" value="Ex&#xe1;menes que usted seleccion&#xf3;" />
             <entry key="Solicitar examen" value="Solicitar examen" />
@@ -101,20 +101,26 @@
     <ui name="MainSplash" />
     <image name="mini32x32.png" type="multi"  />
     <theme name="Theme">
-        <val key="@commandBehavior" value="2" />
+        <val key="@commandBehavior" value="3" />
         <val key="@includeNativeBool" value="true" />
-        <val key="@touchCommandFillBool" value="true" />
+        <val key="@touchCommandFillBool" value="false" />
         <val key="BigBtn.bgColor" value="6a9b00" />
         <val key="BigBtn.derive" value="HomeMainButton" />
+        <val key="BigBtn.dis#derive" value="BigBtn" />
         <font key="BigBtn.font" type="system" face="0" style="0" size="0" />
         <val key="BigBtn.margin" value="0,0,0,0" />
         <val key="BigBtn.press#bgColor" value="8CCD00" />
-        <val key="BigBtn.press#derive" value="HomeMainButton.press" />
+        <val key="BigBtn.press#derive" value="BigBtn" />
         <val key="BigBtn.press#margin" value="0,0,0,0" />
         <val key="BigBtn.sel#bgColor" value="8CCD00" />
-        <val key="BigBtn.sel#derive" value="HomeMainButton.sel" />
+        <val key="BigBtn.sel#derive" value="BigBtn" />
         <val key="BigBtn.sel#margin" value="0,0,0,0" />
-        <val key="BigBtn.textDecoration" value="32" />
+        <val key="BigBtn.textDecoration" value="0" />
+        <val key="BigBtnSecondary.bgColor" value="002561" />
+        <val key="BigBtnSecondary.derive" value="HomeMainButton" />
+        <font key="BigBtnSecondary.font" type="system" face="0" style="0" size="0" />
+        <val key="BigBtnSecondary.margin" value="0,0,0,0" />
+        <val key="BigBtnSecondary.textDecoration" value="0" />
         <val key="BtnConsusalud.align" value="4" />
         <val key="BtnConsusalud.bgColor" value="ffffcc" />
         <border key="BtnConsusalud.border" type="rounded" thickness="0" arcW="1" arcH="1" color="16763904" />

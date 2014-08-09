@@ -19,7 +19,9 @@ import userclasses.common.FilterProxyListModel;
  */
 public class ExamsModel extends FilterProxyListModel {
     //Data file's name
+    static public String EXAMS_SELECTED_STORAGE = "selected_exams";
     static public String EXAMS_STORAGE = "exams";
+    static public String EXAMS_STORAGE_LAST_UPDATE = "actualizado";
     static public String EXAMS_FILE = EXAMS_STORAGE + ".json";
     static public String EXAMS_FILE_CLOUD = "http://localhost/"+EXAMS_FILE;
     //Fields´ constants
@@ -38,7 +40,7 @@ public class ExamsModel extends FilterProxyListModel {
     @Override
     public String ItemtoString(Object item) {
         Hashtable<String, String> exam = ((Hashtable<String, String>) item);
-        if (normalized) {
+        if (normalized){
             return exam.get(FIELD_FULLNAME_CACHE);
         } else {    //Sino lo calculo y cacheo la primera vez
             String caption = DataManager.selector(exam.get(FIELD_FULLNAME));
