@@ -166,18 +166,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Button findBtnGotoFrmRequest(Component root) {
-        return (com.codename1.ui.Button)findByName("BtnGotoFrmRequest", root);
-    }
-
-    public com.codename1.ui.Button findBtnGotoFrmRequest() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnGotoFrmRequest", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("BtnGotoFrmRequest", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findContainer1(Component root) {
         return (com.codename1.ui.Container)findByName("Container1", root);
     }
@@ -274,18 +262,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findFooterBar(Component root) {
-        return (com.codename1.ui.Container)findByName("FooterBar", root);
-    }
-
-    public com.codename1.ui.Container findFooterBar() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("FooterBar", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("FooterBar", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Label findLabel1(Component root) {
         return (com.codename1.ui.Label)findByName("Label1", root);
     }
@@ -294,6 +270,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("Label1", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("Label1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Button findBtnNext(Component root) {
+        return (com.codename1.ui.Button)findByName("BtnNext", root);
+    }
+
+    public com.codename1.ui.Button findBtnNext() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnNext", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("BtnNext", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -366,18 +354,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.components.InfiniteProgress cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.components.InfiniteProgress)findByName("InfiniteProgress", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Button findBtnBackToMain(Component root) {
-        return (com.codename1.ui.Button)findByName("BtnBackToMain", root);
-    }
-
-    public com.codename1.ui.Button findBtnBackToMain() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnBackToMain", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("BtnBackToMain", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -526,18 +502,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Button findBtnReselectExams(Component root) {
-        return (com.codename1.ui.Button)findByName("BtnReselectExams", root);
-    }
-
-    public com.codename1.ui.Button findBtnReselectExams() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("BtnReselectExams", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("BtnReselectExams", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.components.MultiButton findMultiButton1(Component root) {
         return (com.codename1.components.MultiButton)findByName("MultiButton1", root);
     }
@@ -634,22 +598,12 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public static final int COMMAND_MainInicio = 6;
-    public static final int COMMAND_MainTerminLaSelecciN = 7;
-    public static final int COMMAND_FormRequestReseleccionarExMenes = 8;
+    public static final int COMMAND_MainCommand6 = 6;
     public static final int COMMAND_HomeViewSolicitarExamen = 3;
     public static final int COMMAND_HomeViewAcercaDeNuestroLaboratorio = 2;
     public static final int COMMAND_MainSiguiente = 5;
 
-    protected boolean onMainInicio() {
-        return false;
-    }
-
-    protected boolean onMainTerminLaSelecciN() {
-        return false;
-    }
-
-    protected boolean onFormRequestReseleccionarExMenes() {
+    protected boolean onMainCommand6() {
         return false;
     }
 
@@ -667,22 +621,8 @@ public abstract class StateMachineBase extends UIBuilder {
 
     protected void processCommand(ActionEvent ev, Command cmd) {
         switch(cmd.getId()) {
-            case COMMAND_MainInicio:
-                if(onMainInicio()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
-            case COMMAND_MainTerminLaSelecciN:
-                if(onMainTerminLaSelecciN()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
-            case COMMAND_FormRequestReseleccionarExMenes:
-                if(onFormRequestReseleccionarExMenes()) {
+            case COMMAND_MainCommand6:
+                if(onMainCommand6()) {
                     ev.consume();
                     return;
                 }
@@ -1228,10 +1168,6 @@ public abstract class StateMachineBase extends UIBuilder {
                 onFormRequest_ListSelectionAction(c, event);
                 return;
             }
-            if("BtnReselectExams".equals(c.getName())) {
-                onFormRequest_BtnReselectExamsAction(c, event);
-                return;
-            }
             if("BtnEnviar".equals(c.getName())) {
                 onFormRequest_BtnEnviarAction(c, event);
                 return;
@@ -1242,20 +1178,16 @@ public abstract class StateMachineBase extends UIBuilder {
                 onMain_MultiListAction(c, event);
                 return;
             }
+            if("txtSearch".equals(c.getName())) {
+                onMain_TxtSearchAction(c, event);
+                return;
+            }
             if("BtnReset".equals(c.getName())) {
                 onMain_BtnResetAction(c, event);
                 return;
             }
-            if("BtnBackToMain".equals(c.getName())) {
-                onMain_BtnBackToMainAction(c, event);
-                return;
-            }
-            if("BtnGotoFrmRequest".equals(c.getName())) {
-                onMain_BtnGotoFrmRequestAction(c, event);
-                return;
-            }
-            if("txtSearch".equals(c.getName())) {
-                onMain_TxtSearchAction(c, event);
+            if("BtnNext".equals(c.getName())) {
+                onMain_BtnNextAction(c, event);
                 return;
             }
         }
@@ -1294,25 +1226,19 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onFormRequest_ListSelectionAction(Component c, ActionEvent event) {
       }
 
-      protected void onFormRequest_BtnReselectExamsAction(Component c, ActionEvent event) {
-      }
-
       protected void onFormRequest_BtnEnviarAction(Component c, ActionEvent event) {
       }
 
       protected void onMain_MultiListAction(Component c, ActionEvent event) {
       }
 
+      protected void onMain_TxtSearchAction(Component c, ActionEvent event) {
+      }
+
       protected void onMain_BtnResetAction(Component c, ActionEvent event) {
       }
 
-      protected void onMain_BtnBackToMainAction(Component c, ActionEvent event) {
-      }
-
-      protected void onMain_BtnGotoFrmRequestAction(Component c, ActionEvent event) {
-      }
-
-      protected void onMain_TxtSearchAction(Component c, ActionEvent event) {
+      protected void onMain_BtnNextAction(Component c, ActionEvent event) {
       }
 
 }

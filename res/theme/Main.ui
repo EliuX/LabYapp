@@ -20,26 +20,19 @@
     <custom name="horizontalLayout" type="java.lang.Boolean" value="true" />
     <custom name="checkBox" type="java.lang.Boolean" value="true" />
   </component>
-  <component type="Container" name="FooterBar" cloudDestinationProperty="FooterBar" tensileDragEnabled="false" snapToGrid="true" layout="BoxLayout" boxLayoutAxis="Y" >
-    <layoutConstraint value="South" />
-    <component type="Container" name="ToolBar" cloudDestinationProperty="Container" layout="FlowLayout" flowLayoutFillRows="true" flowLayoutAlign="1" flowLayoutValign="4" >
-      <component type="Label" name="StatusExams" cloudDestinationProperty="StatusExams" uiid="Label" text="0" icon="mini32x32.png" >
-      </component>
-      <component type="Label" name="StatusMoney" cloudDestinationProperty="StatusMoney" uiid="StatusExamFooter" text="0" >
-      </component>
-      <component type="Button" name="BtnReset" cloudDestinationProperty="BtnReset" uiid="MultiButton" text="Recomenzar" icon="ic_input_delete.png" >
-      </component>
-    </component>
-    <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" rtl="false" scrollVisible="false" scrollableX="false" scrollableY="false" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-      <component type="Button" name="BtnBackToMain" cloudDestinationProperty="BtnEnviar" commandName="Inicio" commandId="6" commandAction="HomeView" commandBack="true" uiid="BigBtnSecondary" flatten="false" text="Inicio" verticalAlignment="4" >
-        <custom name="maskName" type="java.lang.String" value="" />
-      </component>
-      <component type="Button" name="BtnGotoFrmRequest" cloudDestinationProperty="BtnEnviar" commandName="Termin&#xe9; la selecci&#xf3;n" commandId="7" commandAction="FormRequest" commandBack="false" uiid="BigBtn" flatten="false" text="Termin&#xe9; la selecci&#xf3;n" verticalAlignment="4" >
-        <custom name="maskName" type="java.lang.String" value="" />
-      </component>
-    </component>
-  </component>
   <component type="TextField" name="txtSearch" cloudBoundProperty="text" cloudDestinationProperty="txtSearch" text="" hint="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" >
     <layoutConstraint value="North" />
   </component>
-<command name="Inicio" id="6" action="HomeView" backCommand="true" /><command name="Inicio" id="6" action="HomeView" backCommand="false" /><command name="Inicio" id="6" action="!HomeView;HomeView" backCommand="false" /><command name="Siguiente" id="5" action="FormRequest" backCommand="false" /></component>
+  <component type="Container" name="ToolBar" cloudDestinationProperty="Container" layout="FlowLayout" flowLayoutFillRows="true" flowLayoutAlign="1" flowLayoutValign="4" >
+    <layoutConstraint value="South" />
+    <component type="Label" name="StatusExams" cloudDestinationProperty="StatusExams" uiid="Label" text="0" icon="mini32x32.png" >
+    </component>
+    <component type="Label" name="StatusMoney" cloudDestinationProperty="StatusMoney" uiid="StatusExamFooter" text="0" >
+    </component>
+    <component type="Button" name="BtnReset" cloudDestinationProperty="BtnReset" commandName="" commandIcon="ic_input_delete.png" commandId="6" commandAction="" commandBack="false" uiid="SoftButtonLeft" text="" icon="ic_input_delete.png" toggle="true" >
+      <custom name="maskName" type="java.lang.String" value="" />
+    </component>
+    <component type="Button" name="BtnNext" cloudDestinationProperty="BtnReset" commandName="Siguiente" commandIcon="ic_btn_search_go.png" commandId="5" commandAction="FormRequest" commandBack="false" uiid="SoftButtonLeft" text="Siguiente" icon="ic_btn_search_go.png" >
+    </component>
+  </component>
+<command name="Siguiente" id="5" action="FormRequest" backCommand="false" /></component>

@@ -24,6 +24,7 @@ public class Utils {
     static public String EXAMS_SELECTED = "ex�men(es) seleccionados";
     static public String NEWLINE = "\n";
     static public String TABLINE = "\t";
+    static public String INDENT = TABLINE;
     static public String NEWSEGMENT = NEWLINE + "----------------------------------------" + NEWLINE;
     static public String URL_MAP_LOCATION = "https://www.google.com/maps?t=m&sll=3.415978,-76.528115&sspn=0.0082251,0.0109864&q=Consusalud+Servicio+Integral+de+Salud&cid=0xa5f3dcc37be13776&output=classic&dg=ntvo";
     static public String ERR_TITLE = "Ooh!";

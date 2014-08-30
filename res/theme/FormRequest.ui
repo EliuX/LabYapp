@@ -61,12 +61,9 @@
       </component>
     </component>
   </component>
-  <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" rtl="false" scrollVisible="false" scrollableX="false" scrollableY="false" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+  <component type="Container" name="FooterBarRequest" cloudDestinationProperty="FooterBarRequest" rtl="false" scrollVisible="false" scrollableX="false" scrollableY="false" layout="LayeredLayout" >
     <layoutConstraint value="South" />
-    <component type="Button" name="BtnReselectExams" cloudDestinationProperty="BtnEnviar" commandName="Reseleccionar ex&#xe1;menes" commandId="8" commandAction="Main" commandBack="true" uiid="BigBtnSecondary" flatten="false" text="Reseleccionar ex&#xe1;menes" verticalAlignment="4" >
-      <custom name="maskName" type="java.lang.String" value="" />
-    </component>
-    <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" uiid="BigBtn" flatten="false" text="Enviar datos" verticalAlignment="4" >
+    <component type="Button" name="BtnEnviar" cloudDestinationProperty="BtnEnviar" uiid="BigBtn" flatten="false" text="Enviar datos" verticalAlignment="4" textPosition="2" >
       <custom name="maskName" type="java.lang.String" value="" />
     </component>
   </component>

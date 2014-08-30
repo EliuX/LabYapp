@@ -12,7 +12,7 @@
     <image name="iconApp.svg" baseUrl="svg" type="svg"  />
     <l10n name="Localization (L10N)">
         <lang name="en">
-            <entry key="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
+            <entry key="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " value="CONSUSALUD is a group dedicated to private and ambulatory health services; giving quality in time, and having as principle the human touch of our teamwork. The main values which guide our company  are social responsibility, solidarity, opportunity and work." />
             <entry key="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" value="Comment about the test or any particularity of your case" />
             <entry key="Sus datos para contactarle" value="Your data to be contacted" />
             <entry key="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" value="Would you like to use the afilliation plan?" />
@@ -34,9 +34,11 @@
             <entry key="Su nombre completo" value="Fullname please..." />
             <entry key="Enviar datos" value="Send data" />
             <entry key="Cargando Ex&#xe1;menes de Laboratorio" value="Loading lab tests" />
+            <entry key="Info@consusalud.co" value="Info@consusalud.co" />
             <entry key="http://www.consusalud.com" value="http://www.consusalud.com" />
             <entry key="about.consusalud" value="CONSUSALUD is an enterprise team committed to mobile health care services in the private sector, with prevention in mind and having as principle the human nature of our team of work. Our principal values which rule this small enterprise are Responsibility, solidarity, opportunity and leadership. " />
             <entry key="0" value="0" />
+            <entry key="Correo para dudas y sugerencias" value="Mail for doubts and sugestions" />
             <entry key="-" value="-" />
             <entry key="Direcci&#xf3;n" value="Address" />
             <entry key="+" value="+" />
@@ -57,11 +59,11 @@
             <entry key="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
             <entry key="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" value="Comente sobre alg&#xfa;n ex&#xe1;men que no haya visto en el listado o alguna particularidad de su caso" />
             <entry key="Sus datos para contactarle" value="Sus datos para contactarle" />
-            <entry key="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" value="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" />
+            <entry key="&#xbf;Le gustar&#xed;a usar el plan de afiliados?" value="&#xbf;Le gustar&#xed;a el plan de afiliados?" />
             <entry key="1. {Line2=more..., Line1=Entry 1}" value="1. {Line2=more..., Line1=Entry 1}" />
             <entry key="MultiButton" value="MultiButton" />
             <entry key="cancel" value="Cancelar" />
-            <entry key="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" value="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" />
+            <entry key="&#xbf;Qu&#xe9; examenes de laboratorio desea hacerse?" value="Seleccione el ex&#xe1;men deseado" />
             <entry key="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" value="1. {fullname=Entrada 1, selected=true, price=200 cuc, freq=moneda}" />
             <entry key="&#xbf;Quienes somos?" value="&#xbf;Quienes somos?" />
             <entry key="Seleccionar ex&#xe1;men" value="Seleccionar ex&#xe1;men" />
@@ -76,9 +78,11 @@
             <entry key="Su nombre completo" value="Su nombre completo" />
             <entry key="Enviar datos" value="Enviar datos" />
             <entry key="Cargando Ex&#xe1;menes de Laboratorio" value="Cargando Ex&#xe1;menes de Laboratorio" />
+            <entry key="Info@consusalud.co" value="Info@consusalud.co" />
             <entry key="http://www.consusalud.com" value="http://www.consusalud.com" />
             <entry key="about.consusalud" value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />
             <entry key="0" value="0" />
+            <entry key="Correo para dudas y sugerencias" value="Correo para dudas y sugerencias" />
             <entry key="-" value="-" />
             <entry key="Direcci&#xf3;n" value="Direcci&#xf3;n" />
             <entry key="+" value="+" />

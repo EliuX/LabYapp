@@ -2,8 +2,7 @@
  * Your application code goes here
  */
 package userclasses;
-
-import com.codename1.io.Storage;
+ 
 import com.codename1.messaging.Message;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -20,8 +19,7 @@ import com.codename1.ui.list.MultiList;
 import com.codename1.ui.util.Resources;
 import generated.StateMachineBase;
 import java.util.Hashtable;
-import java.util.Vector; 
-import sun.security.pkcs11.wrapper.Constants;
+import java.util.Vector;
 import userclasses.common.DataManager;
 
 /**
@@ -36,10 +34,10 @@ public class StateMachine extends StateMachineBase {
     /**
      * Versiones locales de recursos: Optimizacion
      */
-    Label lblstatus, lblmoney;
-    Container footerBar;
+    Label lblstatus, lblmoney; 
     private String Hashtable;
-    private boolean isLoaded = false;
+    //private boolean isLoaded = false;
+    private Container toolBar;
 
     public StateMachine(String resFile) {
         super(resFile);
@@ -76,8 +74,8 @@ public class StateMachine extends StateMachineBase {
         });
         
         lblstatus = findStatusExams(f);
-        lblmoney = findStatusMoney(f);
-        footerBar = findFooterBar(f);
+        lblmoney = findStatusMoney(f); 
+        toolBar = findToolBar(f);
         onDataSelectionChange();
     }
 
@@ -98,20 +96,22 @@ public class StateMachine extends StateMachineBase {
     }
 
     @Override
+    public Container findToolBar() {
+        if (toolBar == null) {
+            toolBar = super.findToolBar();
+        }
+        return toolBar;
+    }
+    
+    
+
+    @Override
     public Label findStatusExams() {
         if (lblstatus == null) {
             lblstatus = super.findStatusExams();
         }
         return lblstatus;
-    }
-
-    @Override
-    public Container findFooterBar() {
-        if (footerBar == null) {
-            footerBar = super.findFooterBar();
-        }
-        return footerBar;
-    }
+    } 
 
     @Override
     public Label findStatusMoney() {
@@ -129,8 +129,8 @@ public class StateMachine extends StateMachineBase {
     @Override
     protected void onMain_MultiListAction(Component c, ActionEvent event) {
         if (event.getSource() != null) {
-            Hashtable<String, String> field = proxyModel.getItemSelected();
-            Boolean accepted = ShowDataExam(field);
+            Hashtable<String, String> field = proxyModel.getItemSelected(); 
+            Boolean accepted = Dialog.show("Exámen de laboratorio", ShowDataExam(field), BACK_COMMAND_ID, null, "Sí", "No");
             DataManager.getInstance().toogleSelected(field, accepted);
             onDataSelectionChange();
         }
@@ -143,23 +143,23 @@ public class StateMachine extends StateMachineBase {
      * @param field Datos del examen
      * @return
      */
-    public Boolean ShowDataExam(Hashtable<String, String> field) {
+    public String ShowDataExam(Hashtable<String, String> field) {
         String txt = field.get(ExamsModel.FIELD_FULLNAME);  //Asi empieza
         String precio = field.get(ExamsModel.FIELD_PRICE);
         if (!DataManager.isEmpty(precio)){
-            txt = txt.concat(Constants.NEWLINE + "Precio:"  + Constants.INDENT + Constants.INDENT + Utils.print_money(precio));   
+            txt = txt.concat(Utils.NEWLINE + "Precio:"  + Utils.INDENT + Utils.INDENT + Utils.print_money(precio));
         }else{
-            txt = txt.concat(Constants.NEWLINE + "El precio es variable: Contactar por teléfono" + Constants.NEWLINE );
+            txt = txt.concat(Utils.NEWLINE + "El precio es variable: Contactar por teléfono" + Utils.NEWLINE );
         }
         String price_afiliado = field.get(ExamsModel.FIELD_PRICE_AFILIATED);
         if (!DataManager.isEmpty(price_afiliado)) {
-            txt = txt.concat(Constants.NEWLINE + "Precio de afiliados:" + Constants.INDENT + Utils.print_money(price_afiliado));
+            txt = txt.concat(Utils.NEWLINE + "Precio de afiliados:" + Utils.INDENT + Utils.print_money(price_afiliado));
         }
         String freq = field.get(ExamsModel.FIELD_FREQUENCY);
         if (!DataManager.isEmpty(freq)) {
-            txt = txt.concat(Constants.NEWLINE + "Días de proceso:" + Constants.INDENT + freq);
+            txt = txt.concat(Utils.NEWLINE + "Días de proceso:" + Utils.INDENT + freq);
         }
-        return Dialog.show("Examen de laboratorio", txt, BACK_COMMAND_ID, null, "Sí", "No");
+        return txt;
     }
 
     /**
@@ -190,15 +190,15 @@ public class StateMachine extends StateMachineBase {
      * @param visible If it's visible
      */
     protected void toogleFooter(boolean visible) {
-        final Container footer = findFooterBar();
-        Container father = footer.getParent();
+        final Container footer = findToolBar();
+        Container father = footer;
         if (visible && !footer.isVisible()) {
             footer.setPreferredSize(null);
             father.animateLayout(800);
         } else if (!visible && footer.isVisible()) {
             footer.setPreferredH(0);
             father.animateLayoutAndWait(800);
-        } 
+        }
         footer.setVisible(visible);
     }
 
@@ -207,7 +207,7 @@ public class StateMachine extends StateMachineBase {
         if (DataManager.getInstance().hasSelection()) {
             return false;
         } 
-        Dialog.show("Error en la selección", "Por favor seleccione uno o más exámenes que desee hacerse en nuestro laboratorio", "Entendí", null);
+        Dialog.show("Error en la selección", "Por favor seleccione uno o mis exámenes que desee hacerse en nuestro laboratorio", "Entendí", null);
         return true;
     }
 
@@ -247,10 +247,10 @@ public class StateMachine extends StateMachineBase {
         for (Hashtable<String, String> exam : list) {
             body += "-" + exam.get(ExamsModel.FIELD_FULLNAME) + Utils.NEWLINE;
         }
-        body += Utils.NEWSEGMENT + "Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney()));
+        body += Utils.NEWSEGMENT + "Costo: " + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())) + " " + Utils.modena_str;
         Display.getInstance().sendMessage(new String[]{Utils.ENTERPRISE_MAIL}, "Nueva solicitud de exámen para <" + request.get("fullname") + ">", new Message(body));
         //Hago la salva pertinente en la base de datos 
-       // Storage.getInstance().writeObject(ExamsModel.EXAMS_SELECTED_STORAGE, list);  //Examenes
+       // Storage.getInstance().writeObject(ExamsModel.EXAMS_SELECTED_STORAGE, list);  //Exámenes
     }
 
     public void GatherData() {
@@ -273,7 +273,7 @@ public class StateMachine extends StateMachineBase {
         if (fullname.lastIndexOf(" ")<3) {
             errorsMsg += "Por favor introduzca su nombre completo correctamente." + Utils.NEWLINE;
         }
-        if (!findUserphone().validChar(phone)) {
+        if (phone.trim()=="") {
             errorsMsg += "El teléfono no tiene un valor válido." + Utils.NEWLINE;
         }
         if (DataManager.isEmpty(errorsMsg)) {
@@ -290,4 +290,12 @@ public class StateMachine extends StateMachineBase {
         findTotalRequestCost(f).setText("Costo: " + prefix + Utils.print_money(String.valueOf(DataManager.getInstance().getCountOfMoney())) + " " + Utils.modena_str);
         findLblNP(f).setVisible(selectionNonPayable.size() > 0); //Si hay no pagables, entonces que se muestre
     } 
+
+    @Override
+    protected void onFormRequest_ListSelectionAction(Component c, ActionEvent event) {
+        if (event.getSource() != null) { 
+            Dialog.show("Exámen de laboratorio", ShowDataExam((Hashtable<String, String>) findListSelection().getSelectedItem()), BACK_COMMAND_ID, null, "Entiendo", null);
+        }
+        event.consume();
+    }
 }
