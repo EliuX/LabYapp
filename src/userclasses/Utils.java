@@ -19,9 +19,9 @@ public class Utils {
     static public String ENTERPRISE_MAIL = "clientes@consusalud.co";
     static public String modena_str = "pesos";
     //Listado de Examenes
-    static public String NO_EXAMS_SELECTED = "Seleccione 1 o mï¿½s examenes que desee hacerse";
+    static public String NO_EXAMS_SELECTED = "Seleccione 1 o más examenes que desee hacerse";
     static public String NO_EXAMS = "0";
-    static public String EXAMS_SELECTED = "exï¿½men(es) seleccionados";
+    static public String EXAMS_SELECTED = "exámen(es) seleccionados";
     static public String NEWLINE = "\n";
     static public String TABLINE = "\t";
     static public String INDENT = TABLINE;

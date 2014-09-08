@@ -131,8 +131,9 @@ public class StateMachine extends StateMachineBase {
         if (event.getSource() != null) {
             Hashtable<String, String> field = proxyModel.getItemSelected(); 
             Boolean accepted = Dialog.show("Exámen de laboratorio", ShowDataExam(field), BACK_COMMAND_ID, null, "Sí", "No");
-            DataManager.getInstance().toogleSelected(field, accepted);
+            DataManager.getInstance().toogleSelected(field, accepted); 
             onDataSelectionChange();
+            c.repaint();
         }
         event.consume();
     }

@@ -5,9 +5,13 @@
     <layoutConstraint value="Center" />
     <component type="MultiButton" name="MultiButton2" cloudDestinationProperty="MultiButton2" >
       <custom name="line1" type="java.lang.String" value="P&#xe1;gina web" />
-      <custom name="line2" type="java.lang.String" value="http://www.consusalud.com" />
+      <custom name="line2" type="java.lang.String" value="http://www.consusalud.co" />
       <custom name="radioButton" type="java.lang.Boolean" value="false" />
       <custom name="group" type="java.lang.String" value="radio" />
+    </component>
+    <component type="MultiButton" name="MultiButton3" cloudDestinationProperty="MultiButton3" >
+      <custom name="line1" type="java.lang.String" value="Facebook" />
+      <custom name="line2" type="java.lang.String" value="https://www.facebook.com/consusaludcali" />
     </component>
     <component type="MultiButton" name="MultiButton4" cloudDestinationProperty="MultiButton4" scrollVisible="true" >
       <custom name="line1" type="java.lang.String" value="Direcci&#xf3;n" />
@@ -25,7 +29,7 @@
     </component>
     <component type="MultiButton" name="MultiButton" cloudDestinationProperty="MultiButton" >
       <custom name="line1" type="java.lang.String" value="Correo para dudas y sugerencias" />
-      <custom name="line2" type="java.lang.String" value="Info@consusalud.co" />
+      <custom name="line2" type="java.lang.String" value="clientes@consusalud.co" />
     </component>
     <component type="SpanLabel" name="SpanLabel" cloudDestinationProperty="SpanLabel" >
       <custom name="text" type="java.lang.String" value="CONSUSALUD es un grupo empresarial dedicado a la prestaci&#xf3;n de servicios de salud ambulatorios de calidad a particulares, de manera oportuna, y teniendo como principio la calidez humana de nuestro grupo de trabajo. Nuestros principales valores que gu&#xed;an nuestra compa&#xf1;&#xed;a son Responsabilidad social, solidaridad, oportunidad y liderazgo. " />

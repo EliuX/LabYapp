@@ -33,18 +33,18 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container startApp(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
-        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
-        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("Tabs", com.codename1.ui.Tabs.class);
-        UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("MultiButton", com.codename1.components.MultiButton.class);
+        UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
+        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("CheckBox", com.codename1.ui.CheckBox.class);
-        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
         UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
+        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
+        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("SpanLabel", com.codename1.components.SpanLabel.class);
+        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
         UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
         if(loadTheme) {
             if(res == null) {
@@ -80,18 +80,18 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public Container createWidget(Resources res, String resPath, boolean loadTheme) {
         initVars();
-        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
-        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
-        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("Tabs", com.codename1.ui.Tabs.class);
-        UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("MultiButton", com.codename1.components.MultiButton.class);
+        UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
+        UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
         UIBuilder.registerCustomComponent("CheckBox", com.codename1.ui.CheckBox.class);
-        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
         UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
+        UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
+        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("SpanLabel", com.codename1.components.SpanLabel.class);
+        UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
         UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
         if(loadTheme) {
             if(res == null) {
@@ -406,6 +406,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Label findTotalRequestCost(Component root) {
+        return (com.codename1.ui.Label)findByName("TotalRequestCost", root);
+    }
+
+    public com.codename1.ui.Label findTotalRequestCost() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Button findBtnSolicitar(Component root) {
         return (com.codename1.ui.Button)findByName("btnSolicitar", root);
     }
@@ -426,18 +438,6 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("UserData", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.ComponentGroup)findByName("UserData", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
-    public com.codename1.ui.Label findTotalRequestCost(Component root) {
-        return (com.codename1.ui.Label)findByName("TotalRequestCost", root);
-    }
-
-    public com.codename1.ui.Label findTotalRequestCost() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("TotalRequestCost", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -510,6 +510,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton1", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.components.MultiButton)findByName("MultiButton1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findTopContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("TopContainer", root);
+    }
+
+    public com.codename1.ui.Container findTopContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("TopContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("TopContainer", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -594,6 +606,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("ListSelection", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.list.MultiList)findByName("ListSelection", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.components.MultiButton findMultiButton3(Component root) {
+        return (com.codename1.components.MultiButton)findByName("MultiButton3", root);
+    }
+
+    public com.codename1.components.MultiButton findMultiButton3() {
+        com.codename1.components.MultiButton cmp = (com.codename1.components.MultiButton)findByName("MultiButton3", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.components.MultiButton)findByName("MultiButton3", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1134,6 +1158,10 @@ public abstract class StateMachineBase extends UIBuilder {
                 onFormAboutConSuSalud_MultiButton2Action(c, event);
                 return;
             }
+            if("MultiButton3".equals(c.getName())) {
+                onFormAboutConSuSalud_MultiButton3Action(c, event);
+                return;
+            }
             if("MultiButton4".equals(c.getName())) {
                 onFormAboutConSuSalud_MultiButton4Action(c, event);
                 return;
@@ -1174,12 +1202,12 @@ public abstract class StateMachineBase extends UIBuilder {
             }
         }
         if(rootContainerName.equals("Main")) {
-            if("MultiList".equals(c.getName())) {
-                onMain_MultiListAction(c, event);
-                return;
-            }
             if("txtSearch".equals(c.getName())) {
                 onMain_TxtSearchAction(c, event);
+                return;
+            }
+            if("MultiList".equals(c.getName())) {
+                onMain_MultiListAction(c, event);
                 return;
             }
             if("BtnReset".equals(c.getName())) {
@@ -1200,6 +1228,9 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onFormAboutConSuSalud_MultiButton2Action(Component c, ActionEvent event) {
+      }
+
+      protected void onFormAboutConSuSalud_MultiButton3Action(Component c, ActionEvent event) {
       }
 
       protected void onFormAboutConSuSalud_MultiButton4Action(Component c, ActionEvent event) {
@@ -1229,10 +1260,10 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onFormRequest_BtnEnviarAction(Component c, ActionEvent event) {
       }
 
-      protected void onMain_MultiListAction(Component c, ActionEvent event) {
+      protected void onMain_TxtSearchAction(Component c, ActionEvent event) {
       }
 
-      protected void onMain_TxtSearchAction(Component c, ActionEvent event) {
+      protected void onMain_MultiListAction(Component c, ActionEvent event) {
       }
 
       protected void onMain_BtnResetAction(Component c, ActionEvent event) {
